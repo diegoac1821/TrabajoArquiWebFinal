@@ -3,46 +3,46 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
+import pe.edu.upc.trabajoarquiweb.dtos.RolDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
+import pe.edu.upc.trabajoarquiweb.entities.Rol;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDenunciaService;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Comisaria")
-public class ComisariaController {
+@RequestMapping("/Rol")
+public class RolController {
 
     @Autowired//Injeccion de dependencias
-    private IComisariaService cS;
+    private IRolService rS;
 
     @GetMapping
-    public List<ComisariaDTO> listar() {
-        return cS.list().stream().map(x-> {
+    public List<RolDTO> listar() {
+        return rS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, ComisariaDTO.class);
+            return m.map(x, RolDTO.class);
         }).collect(Collectors.toList());
 
     }
     @PostMapping
-    public void insertar(@RequestBody ComisariaDTO dto) {
+    public void insertar(@RequestBody RolDTO dto) {
         ModelMapper m = new ModelMapper();
-        Comisaria a = m.map(dto, Comisaria.class);
-        cS.insert(a);
+        Rol a = m.map(dto, Rol.class);
+        rS.insert(a);
     }
 
     @PutMapping
-    public void modificar(@RequestBody ComisariaDTO dto) {
+    public void modificar(@RequestBody DenunciaDTO dto) {
         ModelMapper m = new ModelMapper();
-        Comisaria a = m.map(dto, Comisaria.class);
-        cS.update(a);
+        Rol r = m.map(dto, Rol.class);
+        rS.update(r);
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
-        cS.delete(id);
+        rS.delete(id);
     }
 }
