@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
 import jakarta.persistence.*;
+import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
 public class DenunciaDTO {
