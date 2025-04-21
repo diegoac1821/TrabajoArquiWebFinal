@@ -21,6 +21,9 @@ public class Reclamo {
     @JoinColumn(name = "idUser")
     private Usuario usuario;
 
+    public Reclamo() {
+    }
+
     public Reclamo(int id, String asunto, LocalDate fecha, String descripcion, Usuario usuario) {
         this.id = id;
         this.asunto = asunto;
