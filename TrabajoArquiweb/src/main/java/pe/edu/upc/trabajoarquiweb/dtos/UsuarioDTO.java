@@ -2,7 +2,7 @@ package pe.edu.upc.trabajoarquiweb.dtos;
 
 import java.time.LocalDate;
 
-public class usuarioDTO {
+public class UsuarioDTO {
     private int id;
     private int dni;
     private String nombres;
