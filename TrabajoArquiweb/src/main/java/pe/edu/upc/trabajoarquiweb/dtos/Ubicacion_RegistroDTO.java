@@ -1,4 +1,4 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
-public class usuarioDTO {
+public class Ubicacion_RegistroDTO {
 }
