@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.RolDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 import pe.edu.upc.trabajoarquiweb.entities.Rol;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDenunciaService;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
 
 import java.util.List;

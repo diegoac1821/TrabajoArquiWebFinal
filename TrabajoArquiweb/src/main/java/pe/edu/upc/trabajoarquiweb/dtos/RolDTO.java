@@ -1,9 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 public class RolDTO {

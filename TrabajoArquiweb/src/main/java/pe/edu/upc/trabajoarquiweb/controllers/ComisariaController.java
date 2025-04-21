@@ -4,11 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
-import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDenunciaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
