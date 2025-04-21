@@ -10,5 +10,4 @@ public interface IRolService {
     public void insert(Rol rol);
     public void update(Rol rol);
     public void delete(int id);
-    public Rol findById(int id);
 }
