@@ -1,6 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
-import pe.edu.upc.trabajoarquiweb.entities.Alerta;
 import pe.edu.upc.trabajoarquiweb.entities.Ubicacion_Registro;
 
 import java.util.List;

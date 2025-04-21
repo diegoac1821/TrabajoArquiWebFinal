@@ -1,6 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.trabajoarquiweb.entities.Dispositivo_GPS;
 
 import java.sql.Time;

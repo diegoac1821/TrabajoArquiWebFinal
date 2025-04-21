@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.trabajoarquiweb.entities.Dispositivo_GPS;
 import pe.edu.upc.trabajoarquiweb.repositories.IDispositivo_GPSRepository;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDispositivo_GPSService;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IVehiculoService;
 
 import java.util.List;
 
