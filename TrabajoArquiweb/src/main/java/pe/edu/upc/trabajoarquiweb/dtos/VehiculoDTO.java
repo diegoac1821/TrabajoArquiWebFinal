@@ -1,31 +1,16 @@
-package pe.edu.upc.trabajoarquiweb.entities;
+package pe.edu.upc.trabajoarquiweb.dtos;
 
-import jakarta.persistence.*;
-@Entity
-@Table(name = "Vehiculo")
-public class Vehiculo {
-
-    @Id
+public class VehiculoDTO {
     private String placa;
-    @Column(name = "color", nullable = false,length = 20)
+
     private String color;
-    @Column(name = "marca", nullable = false,length = 20)
+
     private String marca;
-    @Column(name = "modelo", nullable = false,length = 20)
+
     private String modelo;
 
-    @ManyToOne
-    @JoinColumn(name = "idUser")
-    private Usuario usuario;
-    public Vehiculo() {}
 
-    public Vehiculo(String placa, String color, String marca, String modelo, Usuario usuario) {
-        this.placa = placa;
-        this.color = color;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.usuario = usuario;
-    }
+    private Usuario usuario;
 
     public String getPlaca() {
         return placa;
