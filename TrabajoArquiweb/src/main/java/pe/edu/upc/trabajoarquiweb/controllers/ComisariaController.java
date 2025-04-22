@@ -1,0 +1,45 @@
+package pe.edu.upc.trabajoarquiweb.controllers;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/Comisaria")
+public class ComisariaController {
+
+    @Autowired//Injeccion de dependencias
+    private IComisariaService cS;
+
+    @GetMapping
+    public List<ComisariaDTO> listar() {
+        return cS.list().stream().map(x-> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, ComisariaDTO.class);
+        }).collect(Collectors.toList());
+
+    }
+    @PostMapping
+    public void insertar(@RequestBody ComisariaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Comisaria a = m.map(dto, Comisaria.class);
+        cS.insert(a);
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody ComisariaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Comisaria a = m.map(dto, Comisaria.class);
+        cS.update(a);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        cS.delete(id);
+    }
+}

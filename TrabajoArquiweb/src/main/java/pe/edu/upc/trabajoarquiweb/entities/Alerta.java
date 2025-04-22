@@ -4,9 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 @Entity
-@Table(name = "Reclamo")
-public class Reclamo {
-
+@Table(name = "Alerta")
+public class Alerta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,24 +18,15 @@ public class Reclamo {
 
     @ManyToOne
     @JoinColumn(name = "idUser")
-    private Usuario usuario;
+    private Vehiculo vehiculo;
+    public Alerta() {}
 
-    public Reclamo() {}
-
-    public Reclamo(int id, String asunto, LocalDate fecha, String descripcion, Usuario usuario) {
+    public Alerta(int id, String asunto, LocalDate fecha, String descripcion, Vehiculo vehiculo) {
         this.id = id;
         this.asunto = asunto;
         this.fecha = fecha;
         this.descripcion = descripcion;
-        this.usuario = usuario;
-    }
-
-    public String getAsunto() {
-        return asunto;
-    }
-
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
+        this.vehiculo = vehiculo;
     }
 
     public int getId() {
@@ -45,6 +35,14 @@ public class Reclamo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
     }
 
     public LocalDate getFecha() {
@@ -63,11 +61,11 @@ public class Reclamo {
         this.descripcion = descripcion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 }
