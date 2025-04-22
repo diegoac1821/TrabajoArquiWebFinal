@@ -1,7 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-
 import java.sql.Time;
 import java.time.LocalDate;
 
