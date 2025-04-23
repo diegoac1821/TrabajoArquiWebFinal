@@ -1,5 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
+import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+
 public class VehiculoDTO {
     private String placa;
 
