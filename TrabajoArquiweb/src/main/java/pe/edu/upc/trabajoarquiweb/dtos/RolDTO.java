@@ -1,16 +1,12 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 public class RolDTO {
 
     private Usuario usuario;
     private String role;
-
+    private int id;
     public Usuario getUsuario() {
         return usuario;
     }
@@ -25,5 +21,13 @@ public class RolDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "Rol")
 public class Rol {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @ManyToOne
     @JoinColumn(name = "idUser")
     private Usuario usuario;
@@ -33,5 +35,13 @@ public class Rol {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

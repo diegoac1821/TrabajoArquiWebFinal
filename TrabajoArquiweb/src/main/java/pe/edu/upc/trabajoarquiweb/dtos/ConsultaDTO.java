@@ -1,36 +1,17 @@
-package pe.edu.upc.trabajoarquiweb.entities;
+package pe.edu.upc.trabajoarquiweb.dtos;
 
-import jakarta.persistence.*;
+import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 import java.sql.Time;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "Consulta")
-public class Consulta {
+public class ConsultaDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "consulta", nullable = false, length = 250)
     private String consulta;
-    @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
-    @Column(name = "hora", nullable = false)
     private Time hora;
-
-    @ManyToOne
-    @JoinColumn(name = "idUser")
     private Usuario usuario;
-    public Consulta() {}
-
-    public Consulta(int id, String consulta, LocalDate fecha, Time hora, Usuario usuario) {
-        this.id = id;
-        this.consulta = consulta;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.usuario = usuario;
-    }
 
     public int getId() {
         return id;

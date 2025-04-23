@@ -1,43 +1,42 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.RolDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Rol;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
+import pe.edu.upc.trabajoarquiweb.dtos.ReclamoDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Reclamo;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IReclamoService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Rol")
-public class RolController {
-
-    @Autowired//Injeccion de dependencias
-    private IRolService rS;
+@RequestMapping("/reclamos")
+public class ReclamoController {
+    @Autowired
+    private IReclamoService rS;
 
     @GetMapping
-    public List<RolDTO> listar() {
+    public List<ReclamoDTO> listar() {
         return rS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, RolDTO.class);
+            return m.map(x, ReclamoDTO.class);
         }).collect(Collectors.toList());
 
     }
     @PostMapping
-    public void insertar(@RequestBody RolDTO dto) {
+    public void insertar(@RequestBody ReclamoDTO dto) {
         ModelMapper m = new ModelMapper();
-        Rol a = m.map(dto, Rol.class);
+        Reclamo a = m.map(dto, Reclamo.class);
         rS.insert(a);
     }
 
     @PutMapping
-    public void modificar(@RequestBody DenunciaDTO dto) {
+    public void modificar(@RequestBody ReclamoDTO dto) {
         ModelMapper m = new ModelMapper();
-        Rol r = m.map(dto, Rol.class);
-        rS.update(r);
+        Reclamo a = m.map(dto, Reclamo.class);
+        rS.update(a);
     }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {

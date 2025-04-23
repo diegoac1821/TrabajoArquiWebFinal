@@ -35,8 +35,5 @@ public class ComisariaServiceimplement implements IComisariaService {
         cR.deleteById(id);
     }
 
-    @Override
-    public Comisaria findById(int id) {
-        return cR.findById(id).orElse(new Comisaria());
-    }
+    
 }

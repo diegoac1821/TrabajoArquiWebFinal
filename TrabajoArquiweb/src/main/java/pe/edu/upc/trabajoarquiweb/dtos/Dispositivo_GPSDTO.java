@@ -1,5 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
+import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
+
 import java.time.LocalDate;
 
 public class Dispositivo_GPSDTO {

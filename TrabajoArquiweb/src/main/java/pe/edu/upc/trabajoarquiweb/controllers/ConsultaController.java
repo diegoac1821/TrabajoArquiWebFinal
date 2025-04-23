@@ -3,39 +3,39 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
+import pe.edu.upc.trabajoarquiweb.dtos.ConsultaDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Consulta;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IConsultaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Comisaria")
-public class ComisariaController {
+@RequestMapping("/consultas")
+public class ConsultaController {
 
-    @Autowired//Injeccion de dependencias
-    private IComisariaService cS;
+    @Autowired
+    private IConsultaService cS;
 
     @GetMapping
-    public List<ComisariaDTO> listar() {
-        return cS.list().stream().map(x-> {
+    public List<ConsultaDTO> listar() {
+        return cS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, ComisariaDTO.class);
+            return m.map(x, ConsultaDTO.class);
         }).collect(Collectors.toList());
 
     }
     @PostMapping
-    public void insertar(@RequestBody ComisariaDTO dto) {
+    public void insertar(@RequestBody ConsultaDTO dto) {
         ModelMapper m = new ModelMapper();
-        Comisaria a = m.map(dto, Comisaria.class);
+        Consulta a = m.map(dto, Consulta.class);
         cS.insert(a);
     }
 
     @PutMapping
-    public void modificar(@RequestBody ComisariaDTO dto) {
+    public void modificar(@RequestBody ConsultaDTO dto) {
         ModelMapper m = new ModelMapper();
-        Comisaria a = m.map(dto, Comisaria.class);
+        Consulta a = m.map(dto, Consulta.class);
         cS.update(a);
     }
     @DeleteMapping("/{id}")

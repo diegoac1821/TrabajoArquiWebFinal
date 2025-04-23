@@ -35,8 +35,5 @@ public class RolServiceImplement implements IRolService {
         rR.deleteById(id);
     }
 
-    @Override
-    public Rol findById(int id) {
-        return rR.findById(id).orElse(new Rol());
-    }
+
 }
