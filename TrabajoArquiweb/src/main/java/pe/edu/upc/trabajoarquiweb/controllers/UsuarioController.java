@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
@@ -18,6 +19,7 @@ public class UsuarioController {
     private IUsuarioService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listar() {
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
