@@ -41,7 +41,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public List<Usuario> search(String nombre) {
-        return uR.buscar(nombre);
+        return List.of();
     }
+
 
 }

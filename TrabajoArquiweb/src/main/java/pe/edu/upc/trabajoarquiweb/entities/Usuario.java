@@ -2,11 +2,13 @@ package pe.edu.upc.trabajoarquiweb.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -28,12 +30,17 @@ public class Usuario {
     private int telefono;
     @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "usename", nullable = false, length = 30)
-    private String usename;
+    @Column(name = "username", nullable = false, length = 30)
+    private String username;
+    private Boolean enabled;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Rol> roles;
 
     public Usuario() {}
-    public Usuario(int id, int dni, String nombres, String apellidos, String direccion, String correo_electronico, LocalDate fechaNacimiento, int edad, int telefono, String password, String usename) {
+
+    public Usuario(int id, int dni, String nombres, String apellidos, String direccion, String correo_electronico, LocalDate fechaNacimiento, int edad, int telefono, String password, String username, Boolean enabled, List<Rol> roles) {
         this.id = id;
         this.dni = dni;
         this.nombres = nombres;
@@ -44,7 +51,9 @@ public class Usuario {
         this.edad = edad;
         this.telefono = telefono;
         this.password = password;
-        this.usename = usename;
+        this.username = username;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -127,11 +136,27 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getUsename() {
-        return usename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsename(String usename) {
-        this.usename = usename;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }
