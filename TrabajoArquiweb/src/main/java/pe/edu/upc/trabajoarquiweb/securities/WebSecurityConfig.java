@@ -13,6 +13,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfig {
+    //Hola
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
