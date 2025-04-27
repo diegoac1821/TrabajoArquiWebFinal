@@ -1,6 +1,9 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
+import pe.edu.upc.trabajoarquiweb.entities.Rol;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class UsuarioDTO {
     private int id;
@@ -13,7 +16,17 @@ public class UsuarioDTO {
     private int edad;
     private int telefono;
     private String password;
-    private String usename;
+    private String username;
+    private Boolean enabled;
+    private List<Rol> roles;
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     public int getId() {
         return id;
@@ -95,11 +108,19 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public String getUsename() {
-        return usename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsename(String usename) {
-        this.usename = usename;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }
