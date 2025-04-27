@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/respuestas")
-public class RespuestaController {
+public class  RespuestaController {
 
     @Autowired
     private IRepuestaService rrS;
