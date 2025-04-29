@@ -4,9 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.AlertaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.TipoAlertaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.UsuarioConTotalAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IAlertaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
@@ -39,5 +42,30 @@ public class AlertaController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         aS.delete(id);
+    }
+
+    @GetMapping("/usuarios_maslertas")
+    public List<UsuarioConTotalAlertasDTO> listarUsuariosMaslertas() {
+        List<String[]> filaLista=aS.usersMoreAlert();
+        List<UsuarioConTotalAlertasDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            UsuarioConTotalAlertasDTO dto=new UsuarioConTotalAlertasDTO();
+            dto.setNombreCompleto(columna[0]);
+            dto.setTotalAlertas(Long.parseLong(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+    @GetMapping("/alertas_mas_tipo")
+    public List<TipoAlertaDTO> listarAlertasMasTipo() {
+        List<String[]> filaLista=aS.typeAlertmore();
+        List<TipoAlertaDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            TipoAlertaDTO dto=new TipoAlertaDTO();
+            dto.setTipoAlerta(columna[0]);
+            dto.setTotal(Long.parseLong(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

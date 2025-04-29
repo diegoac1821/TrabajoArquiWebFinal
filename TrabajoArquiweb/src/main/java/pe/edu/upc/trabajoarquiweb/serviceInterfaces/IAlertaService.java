@@ -9,5 +9,8 @@ public interface IAlertaService {
     public void insert(Alerta alerta);
     public void update(Alerta alerta);
     public void delete(int id);
+    public List<String[]> usersMoreAlert();
+    public List<String[]> typeAlertmore();
+
 
 }
