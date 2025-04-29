@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
 
@@ -46,9 +47,9 @@ public class DenunciaController {
         dS.delete(id);
     }
 
-    @Autowired
-    private IDenunciaService denunciaService;
 
+
+    @PreAuthorize("hasAuthority('USUARIO')")
     @GetMapping("/buscar/{id}")
     public List<DenunciaDTO> buscarPorId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();

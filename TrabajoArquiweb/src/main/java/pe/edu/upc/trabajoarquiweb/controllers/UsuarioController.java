@@ -57,4 +57,12 @@ public class UsuarioController {
             return m.map(h,UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/filtrar-edad")
+    public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
+        ModelMapper m = new ModelMapper();
+        return uS.filtrarUsuariosPorEdad(min, max).stream()
+                .map(u -> m.map(u, UsuarioDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }
