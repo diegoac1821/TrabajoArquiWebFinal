@@ -45,4 +45,17 @@ public class DenunciaController {
     public void eliminar(@PathVariable("id") int id) {
         dS.delete(id);
     }
+
+    @Autowired
+    private IDenunciaService denunciaService;
+
+    @GetMapping("/buscar/{id}")
+    public List<DenunciaDTO> buscarPorId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        return dS.buscarDenunciaPorId(id).stream()
+                .map(x -> m.map(x, DenunciaDTO.class))
+                .collect(Collectors.toList());
+    }
+
+
 }
