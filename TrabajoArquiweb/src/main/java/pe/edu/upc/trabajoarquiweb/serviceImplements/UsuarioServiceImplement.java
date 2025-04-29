@@ -44,5 +44,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return List.of();
     }
 
-
+    @Override
+    public List<Usuario> filtrarUsuariosPorEdad(int min, int max) {
+        return uR.filtrarPorEdad(min, max);
+    }
 }
