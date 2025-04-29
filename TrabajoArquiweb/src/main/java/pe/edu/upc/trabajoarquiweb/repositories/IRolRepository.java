@@ -6,4 +6,5 @@ import pe.edu.upc.trabajoarquiweb.entities.Rol;
 
 @Repository
 public interface IRolRepository extends JpaRepository<Rol, Integer> {
+
 }

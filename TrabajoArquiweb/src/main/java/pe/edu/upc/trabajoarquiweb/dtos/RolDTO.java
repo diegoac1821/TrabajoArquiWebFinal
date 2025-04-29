@@ -1,19 +1,12 @@
 package pe.edu.upc.trabajoarquiweb.dtos;
 
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+
 
 public class RolDTO {
 
-    private Usuario usuario;
+
     private String role;
     private int id;
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public String getRole() {
         return role;
