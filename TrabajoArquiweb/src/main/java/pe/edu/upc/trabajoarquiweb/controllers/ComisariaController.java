@@ -3,10 +3,12 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.CantDenunciasComisariaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +43,19 @@ public class ComisariaController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         cS.delete(id);
+    }
+
+    @GetMapping("/denunciasxcomisaria")
+
+    public List<CantDenunciasComisariaDTO> Cantidaddenunciasxcomisaria(){
+        List<String[]> filaLista=cS.cantidaddenunciasporcomisaria();
+        List<CantDenunciasComisariaDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            CantDenunciasComisariaDTO dto=new CantDenunciasComisariaDTO();
+            dto.setNombre(columna[0]);
+            dto.setDenunciasporcomisaria(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

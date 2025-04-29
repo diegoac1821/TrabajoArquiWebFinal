@@ -41,4 +41,12 @@ public class VehiculoController {
     public void eliminar(@PathVariable("id") String id) {
         vS.delete(id);
     }
+
+    @GetMapping("/busquedaporplaca")
+    public List<VehiculoDTO> buscarporplaca(@RequestParam String placa) {
+        return vS.buscarporplaca(placa).stream().map(v->{
+            ModelMapper m = new ModelMapper();
+            return m.map(v, VehiculoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
