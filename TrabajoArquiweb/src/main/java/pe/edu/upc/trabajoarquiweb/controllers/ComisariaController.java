@@ -53,16 +53,16 @@ public class ComisariaController {
             return m.map(h, ComisariaDTO.class);
         }).collect(Collectors.toList());
 
-    @GetMapping("/denunciasxcomisaria")
-    public List<CantDenunciasComisariaDTO> Cantidaddenunciasxcomisaria(){
-        List<String[]> filaLista=cS.cantidaddenunciasporcomisaria();
-        List<CantDenunciasComisariaDTO> dtoLista=new ArrayList<>();
-        for(String[] columna:filaLista){
-            CantDenunciasComisariaDTO dto=new CantDenunciasComisariaDTO();
-            dto.setNombre(columna[0]);
-            dto.setDenunciasporcomisaria(Integer.parseInt(columna[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista
-    }
+//    @GetMapping("/denunciasxcomisaria")
+//    public List<CantDenunciasComisariaDTO> Cantidaddenunciasxcomisaria(){
+//        List<String[]> filaLista=cS.cantidaddenunciasporcomisaria();
+//        List<CantDenunciasComisariaDTO> dtoLista=new ArrayList<>();
+//        for(String[] columna:filaLista){
+//            CantDenunciasComisariaDTO dto=new CantDenunciasComisariaDTO();
+//            dto.setNombre(columna[0]);
+//            dto.setDenunciasporcomisaria(Integer.parseInt(columna[1]));
+//            dtoLista.add(dto);
+//        }
+//        return dtoLista
+//    }
 }
