@@ -42,4 +42,12 @@ public class ComisariaController {
     public void eliminar(@PathVariable("id") int id) {
         cS.delete(id);
     }
+
+    @GetMapping("/buscarDistrito")
+    public List<ComisariaDTO> buscarComisariaPorDistrito(@RequestParam String distrito) {
+        return cS.buscarComisariaPorDistrito(distrito).stream().map(h->{
+            ModelMapper m = new ModelMapper();
+            return m.map(h, ComisariaDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

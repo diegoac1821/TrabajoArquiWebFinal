@@ -35,5 +35,9 @@ public class ComisariaServiceimplement implements IComisariaService {
         cR.deleteById(id);
     }
 
-    
+    @Override
+    public List<Comisaria> buscarComisariaPorDistrito(String distrito) {
+        return cR.buscarComisariaPorDistrito(distrito);}
+
+
 }

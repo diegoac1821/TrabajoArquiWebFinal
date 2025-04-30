@@ -44,5 +44,4 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return List.of();
     }
 
-
 }
