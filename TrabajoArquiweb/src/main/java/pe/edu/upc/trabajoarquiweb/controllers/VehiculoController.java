@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.VehiculoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
@@ -16,6 +17,7 @@ public class VehiculoController {
     @Autowired//Injeccion de dependencias
     private IVehiculoService vS;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<VehiculoDTO> listar() {
         return vS.list().stream().map(x -> {
@@ -24,24 +26,27 @@ public class VehiculoController {
         }).collect(Collectors.toList());
 
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody VehiculoDTO dto) {
         ModelMapper m = new ModelMapper();
         Vehiculo a = m.map(dto, Vehiculo.class);
         vS.insert(a);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody VehiculoDTO dto) {
         ModelMapper m = new ModelMapper();
         Vehiculo a = m.map(dto, Vehiculo.class);
         vS.update(a);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") String id) {
         vS.delete(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/busquedaporplaca")
     public List<VehiculoDTO> buscarporplaca(@RequestParam String placa) {
         return vS.buscarporplaca(placa).stream().map(v->{
