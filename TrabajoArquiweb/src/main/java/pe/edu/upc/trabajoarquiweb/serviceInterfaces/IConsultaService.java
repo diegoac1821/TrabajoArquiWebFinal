@@ -10,4 +10,5 @@ public interface IConsultaService {
     public void insert(Consulta c);
     public void delete(int id);
     public void update(Consulta c);
+    public List<String[]> cantidadConsultasPorUsuario();
 }

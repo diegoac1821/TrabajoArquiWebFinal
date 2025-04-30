@@ -3,10 +3,12 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.CantidadConsultasPorUsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ConsultaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Consulta;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IConsultaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +43,21 @@ public class ConsultaController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         cS.delete(id);
+    }
+
+    @GetMapping("/cantidadconsultas")
+    public List<CantidadConsultasPorUsuarioDTO> cantidadConsultasPorUsuario() {
+        List<String[]> lista = cS.cantidadConsultasPorUsuario();
+        List<CantidadConsultasPorUsuarioDTO> listaDTO = new ArrayList<>();
+        for (String[] columna : lista) {
+            CantidadConsultasPorUsuarioDTO dto = new CantidadConsultasPorUsuarioDTO();
+            dto.setId(Integer.parseInt(columna[0]));
+            dto.setNombres(columna[1]);
+            dto.setApellidos(columna[2]);
+            dto.setCantidadConsultas(Integer.parseInt(columna[3]));
+
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 }

@@ -10,6 +10,11 @@ import java.util.List;
 
 @Repository
 public interface IComisariaRepository extends JpaRepository<Comisaria, Integer> {
+
+    @Query(value = " SELECT c " +
+            " FROM Comisaria c " +
+            " WHERE c.distrito = :distrito", nativeQuery = true)
+    public List<Comisaria> buscarComisariaPorDistrito(@Param("distrito") String distrito);
     @Query(value="SELECT c.nombre AS nombre_comisaria, COUNT(d.id) AS cantidad_denuncias\n" +
             " FROM denuncia d\n" +
             " JOIN comisaria c ON d.id_comisaria = c.id\n" +
