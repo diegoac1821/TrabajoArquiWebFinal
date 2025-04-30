@@ -19,5 +19,5 @@ public class CantDenunciasComisariaDTO {
     public void setDenunciasporcomisaria(int denunciasporcomisaria) {
         this.denunciasporcomisaria = denunciasporcomisaria;
     }
-    //
+    
 }
