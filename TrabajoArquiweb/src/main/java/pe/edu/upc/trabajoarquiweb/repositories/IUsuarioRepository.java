@@ -14,14 +14,14 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Usuario findOneByUsername(String username);
 
     //BUSCAR POR NOMBRE
-    @Query("select count(u.username) from Usuario u where u.username =:username")
+    @Query(" select count(u.username) from Usuario u where u.username =:username")
     public int buscarUsername(@Param("username") String nombre);
 
 
     //INSERTAR ROLES
     @Transactional
     @Modifying
-    @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
+    @Query(value = " insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
 
 
@@ -30,5 +30,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             " LEFT JOIN Vehiculo v ON u.id = v.usuario.id  \n" +
             " GROUP BY u.id, u.nombres")
     List<String[]> cantidadVehiculosPorUsuario();
+
+    @Query("SELECT u FROM Usuario u WHERE u.edad BETWEEN :min AND :max")
+    List<Usuario> filtrarPorEdad(@Param("min") int min, @Param("max") int max);
 
 }

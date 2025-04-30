@@ -14,4 +14,6 @@ public interface IUsuarioService {
     public List<Usuario> search(String nombre);
     public List<String[]> cantidadVehiculosPorUsuario();
 
+    List<Usuario> filtrarUsuariosPorEdad(int min, int max);
+
 }
