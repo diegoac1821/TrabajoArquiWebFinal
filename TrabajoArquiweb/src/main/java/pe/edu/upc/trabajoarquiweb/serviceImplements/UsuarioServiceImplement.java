@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
-
+//wa
     @Autowired
     private IUsuarioRepository uR;
 
