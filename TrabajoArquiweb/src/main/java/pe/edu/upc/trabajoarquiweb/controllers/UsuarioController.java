@@ -1,9 +1,18 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
-import org.modelmapper.ModelMapper;
+    import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+    import pe.edu.upc.trabajoarquiweb.dtos.NVehiculosUsuarioDTO;
+    import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+
 import pe.edu.upc.trabajoarquiweb.dtos.CantidadConsultasPorUsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
@@ -58,6 +67,19 @@ public class UsuarioController {
             ModelMapper m = new ModelMapper();
             return m.map(h,UsuarioDTO.class);
         }).collect(Collectors.toList());
+    }
+    @GetMapping("/cantidadvehiculosusuario")
+    public List<NVehiculosUsuarioDTO> listarCantidadVehiculosPorUsuario(){
+        List<String[]> ealista=uS.cantidadVehiculosPorUsuario();
+        List<NVehiculosUsuarioDTO> dtoLista=new ArrayList<>();
+        for (String[] columna : ealista) {
+                NVehiculosUsuarioDTO uDTO = new NVehiculosUsuarioDTO();
+                uDTO.setId(Integer.parseInt(columna[0]));
+                uDTO.setNombres(columna[1]);
+                uDTO.setListaVehiculosPorUsuario(Integer.parseInt(columna[2]));
+                dtoLista.add(uDTO);
+        }
+        return dtoLista;
     }
     @GetMapping("/filtrar-edad")
     public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
