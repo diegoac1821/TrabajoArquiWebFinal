@@ -34,4 +34,9 @@ public class ConsultaServiceImplement implements IConsultaService {
     public void update(Consulta c) {
         cR.save(c);
     }
+
+    @Override
+    public List<String[]> cantidadConsultasPorUsuario() {
+        return cR.cantidadConsultasPorUsuario();
+    }
 }

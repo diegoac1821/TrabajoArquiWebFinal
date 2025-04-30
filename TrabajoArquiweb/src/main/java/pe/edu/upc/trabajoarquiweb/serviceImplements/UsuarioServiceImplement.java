@@ -50,4 +50,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
 
+    public List<Usuario> filtrarUsuariosPorEdad(int min, int max) {
+        return uR.filtrarPorEdad(min, max);
+    }
 }

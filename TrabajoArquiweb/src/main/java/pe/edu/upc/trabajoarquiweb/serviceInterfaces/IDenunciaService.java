@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface IDenunciaService {
     public void insert(Denuncia denuncia);
     public void update(Denuncia denuncia);
     public void delete(int id);
+    public List<Denuncia> buscarDenunciaPorId(int id);
 }

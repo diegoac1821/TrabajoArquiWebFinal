@@ -12,6 +12,14 @@ import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
     import java.util.ArrayList;
     import java.util.Arrays;
     import java.util.List;
+
+import pe.edu.upc.trabajoarquiweb.dtos.CantidadConsultasPorUsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -73,4 +81,12 @@ public class UsuarioController {
         }
         return dtoLista;
     }
+    @GetMapping("/filtrar-edad")
+    public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
+        ModelMapper m = new ModelMapper();
+        return uS.filtrarUsuariosPorEdad(min, max).stream()
+                .map(u -> m.map(u, UsuarioDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

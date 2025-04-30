@@ -10,4 +10,8 @@ public interface IComisariaService {
     public void insert(Comisaria comisaria);
     public void update(Comisaria comisaria);
     public void delete(int id);
+
+    public List<Comisaria> buscarComisariaPorDistrito(String distrito);
+
+    public List<String[]> cantidaddenunciasporcomisaria();
 }
