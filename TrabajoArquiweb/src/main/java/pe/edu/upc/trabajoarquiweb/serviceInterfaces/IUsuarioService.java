@@ -12,5 +12,6 @@ public interface IUsuarioService {
     public void update(Usuario usuario);
     public void delete(int id);
     public List<Usuario> search(String nombre);
+    public List<String[]> cantidadVehiculosPorUsuario();
 
 }

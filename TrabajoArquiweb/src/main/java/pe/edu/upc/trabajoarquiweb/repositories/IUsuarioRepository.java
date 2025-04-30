@@ -24,4 +24,11 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
 
+
+    @Query(value = "SELECT u.id, u.nombres, u.apellidos, COUNT(v.placa) AS cantidad_vehiculos\n" +
+            " FROM Usuario u\n" +
+            " LEFT JOIN Vehiculo v ON u.id = v.usuario.id  \n" +
+            " GROUP BY u.id, u.nombres")
+    List<String[]> cantidadVehiculosPorUsuario();
+
 }
