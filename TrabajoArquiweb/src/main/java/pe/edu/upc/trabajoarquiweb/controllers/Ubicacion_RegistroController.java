@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.Ubicacion_RegistroDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Ubicacion_Registro;
@@ -15,6 +16,7 @@ public class Ubicacion_RegistroController {
     @Autowired//Injeccion de dependencias
     private IUbicacion_RegistroService ruS;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<Ubicacion_RegistroDTO> listar() {
         return ruS.list().stream().map(x -> {
@@ -23,19 +25,21 @@ public class Ubicacion_RegistroController {
         }).collect(Collectors.toList());
 
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody Ubicacion_RegistroDTO dto) {
         ModelMapper m = new ModelMapper();
         Ubicacion_Registro u = m.map(dto, Ubicacion_Registro.class);
         ruS.insert(u);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody Ubicacion_RegistroDTO dto) {
         ModelMapper m = new ModelMapper();
         Ubicacion_Registro u = m.map(dto, Ubicacion_Registro.class);
         ruS.update(u);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         ruS.delete(id);

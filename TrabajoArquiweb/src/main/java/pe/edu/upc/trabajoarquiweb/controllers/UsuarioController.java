@@ -38,25 +38,28 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public UsuarioDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.searchId(id), UsuarioDTO.class);
         return dto;
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping
     public void eliminar(@PathVariable("id") int id) {
         uS.delete(id);
@@ -68,6 +71,8 @@ public class UsuarioController {
             return m.map(h,UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/cantidadvehiculosusuario")
     public List<NVehiculosUsuarioDTO> listarCantidadVehiculosPorUsuario(){
         List<String[]> ealista=uS.cantidadVehiculosPorUsuario();
@@ -81,6 +86,7 @@ public class UsuarioController {
         }
         return dtoLista;
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/filtrar-edad")
     public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
         ModelMapper m = new ModelMapper();

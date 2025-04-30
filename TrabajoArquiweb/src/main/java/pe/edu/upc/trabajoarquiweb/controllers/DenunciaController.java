@@ -21,6 +21,7 @@ public class DenunciaController {
     @Autowired//Injeccion de dependencias
     private IDenunciaService dS;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<DenunciaDTO> listar() {
         return dS.list().stream().map(x -> {
@@ -29,6 +30,8 @@ public class DenunciaController {
         }).collect(Collectors.toList());
 
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody DenunciaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -36,12 +39,15 @@ public class DenunciaController {
         dS.insert(a);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody DenunciaDTO dto) {
         ModelMapper m = new ModelMapper();
         Denuncia a = m.map(dto, Denuncia.class);
         dS.update(a);
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         dS.delete(id);
@@ -49,7 +55,7 @@ public class DenunciaController {
 
 
 
-    @PreAuthorize("hasAuthority('USUARIO')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/buscar/{id}")
     public List<DenunciaDTO> buscarPorId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();

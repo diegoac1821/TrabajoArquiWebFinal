@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.AlertaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.TipoAlertaDTO;
@@ -18,6 +19,7 @@ public class AlertaController {
     @Autowired//Injeccion de dependencias
     private IAlertaService aS;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<AlertaDTO> listar() {
         return aS.list().stream().map(x -> {
@@ -26,6 +28,8 @@ public class AlertaController {
         }).collect(Collectors.toList());
 
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -33,17 +37,21 @@ public class AlertaController {
         aS.insert(a);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
        Alerta a = m.map(dto,Alerta.class);
         aS.update(a);
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         aS.delete(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/usuarios_maslertas")
     public List<UsuarioConTotalAlertasDTO> listarUsuariosMaslertas() {
         List<String[]> filaLista=aS.usersMoreAlert();
@@ -56,6 +64,8 @@ public class AlertaController {
         }
         return dtoLista;
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/alertas_mas_tipo")
     public List<TipoAlertaDTO> listarAlertasMasTipo() {
         List<String[]> filaLista=aS.typeAlertmore();
