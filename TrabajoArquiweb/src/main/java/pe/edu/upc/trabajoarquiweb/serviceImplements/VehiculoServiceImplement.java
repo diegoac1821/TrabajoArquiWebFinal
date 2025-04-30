@@ -32,4 +32,9 @@ public class VehiculoServiceImplement implements IVehiculoService {
     public void delete(String id) {
         vR.deleteById(id);//aR es el enlace
     }
+
+    @Override
+    public List<Vehiculo> buscarporplaca(String placa) {
+        return vR.buscarporplaca(placa);
+    }
 }

@@ -9,4 +9,5 @@ public interface IVehiculoService {
     public void insert(Vehiculo vehiculo);
     public void update(Vehiculo vehiculo);
     public void delete(String id);
+    public List<Vehiculo> buscarporplaca(String placa);
 }

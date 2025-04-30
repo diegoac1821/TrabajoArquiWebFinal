@@ -35,4 +35,14 @@ public class AlertaServiceImplement implements IAlertaService {
         aS.deleteById(id);
 
     }
+
+    @Override
+    public List<String[]> usersMoreAlert() {
+        return aS.usersMoreAlert();
+    }
+
+    @Override
+    public List<String[]> typeAlertmore() {
+        return aS.typeAlertmore();
+    }
 }

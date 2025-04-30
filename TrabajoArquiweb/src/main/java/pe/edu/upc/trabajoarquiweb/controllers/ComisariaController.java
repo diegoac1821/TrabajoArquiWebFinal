@@ -3,10 +3,12 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.CantDenunciasComisariaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,11 +45,24 @@ public class ComisariaController {
         cS.delete(id);
     }
 
+   
     @GetMapping("/buscarDistrito")
     public List<ComisariaDTO> buscarComisariaPorDistrito(@RequestParam String distrito) {
         return cS.buscarComisariaPorDistrito(distrito).stream().map(h->{
             ModelMapper m = new ModelMapper();
             return m.map(h, ComisariaDTO.class);
         }).collect(Collectors.toList());
+    @GetMapping("/denunciasxcomisaria")
+
+    public List<CantDenunciasComisariaDTO> Cantidaddenunciasxcomisaria(){
+        List<String[]> filaLista=cS.cantidaddenunciasporcomisaria();
+        List<CantDenunciasComisariaDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            CantDenunciasComisariaDTO dto=new CantDenunciasComisariaDTO();
+            dto.setNombre(columna[0]);
+            dto.setDenunciasporcomisaria(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

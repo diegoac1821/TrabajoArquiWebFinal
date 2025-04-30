@@ -15,4 +15,11 @@ public interface IComisariaRepository extends JpaRepository<Comisaria, Integer> 
             " FROM Comisaria c " +
             " WHERE c.distrito = :distrito", nativeQuery = true)
     public List<Comisaria> buscarComisariaPorDistrito(@Param("distrito") String distrito);
+    @Query(value="SELECT c.nombre AS nombre_comisaria, COUNT(d.id) AS cantidad_denuncias\n" +
+            " FROM denuncia d\n" +
+            " JOIN comisaria c ON d.id_comisaria = c.id\n" +
+            " GROUP BY c.nombre\n" +
+            " ORDER BY cantidad_denuncias DESC;",nativeQuery = true)
+    public List<String[]>cantidaddenunciasporcomisaria();
+
 }
