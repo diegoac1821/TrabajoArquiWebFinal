@@ -18,8 +18,6 @@ public class ComisariaServiceimplement implements IComisariaService {
         return cR.findAll();
     }
 
-
-
     @Override
     public void insert(Comisaria comisaria) {
         cR.save(comisaria);
@@ -35,5 +33,12 @@ public class ComisariaServiceimplement implements IComisariaService {
         cR.deleteById(id);
     }
 
-    
+    @Override
+    public List<Comisaria> buscarComisariaPorDistrito(String distrito) {
+        return cR.buscarComisariaPorDistrito(distrito);}
+    public List<String[]> cantidaddenunciasporcomisaria() {
+        return cR.cantidaddenunciasporcomisaria();
+    }
+
+
 }

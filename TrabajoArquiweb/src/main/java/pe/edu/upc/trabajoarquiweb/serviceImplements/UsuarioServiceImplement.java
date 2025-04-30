@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
-
+//wa
     @Autowired
     private IUsuarioRepository uR;
 
@@ -45,6 +45,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
+    public List<String[]> cantidadVehiculosPorUsuario() {
+        return uR.cantidadVehiculosPorUsuario();
+    }
+
+
     public List<Usuario> filtrarUsuariosPorEdad(int min, int max) {
         return uR.filtrarPorEdad(min, max);
     }
