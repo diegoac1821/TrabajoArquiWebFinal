@@ -8,8 +8,10 @@ import pe.edu.upc.trabajoarquiweb.dtos.AlertaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.TipoAlertaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.UsuarioConTotalAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
+import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IAlertaService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -78,4 +80,39 @@ public class AlertaController {
         }
         return dtoLista;
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/alertas_periodo")
+    public List<AlertaDTO> alertasenperiodo(@RequestParam LocalDate fecha1, LocalDate fecha2) {
+        List<String[]> filaLista=aS.fechaAlertmore(fecha1,fecha2);
+        List<AlertaDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            AlertaDTO dto=new AlertaDTO();
+            dto.setFecha(LocalDate.parse(columna[0]));
+            dto.setId(Integer.parseInt(columna[1]));
+            dto.setAsunto(columna[2]);
+            dto.setDescripcion(columna[3]);
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setPlaca(columna[4]); // columna[4] = placa del vehículo
+            dto.setVehiculo(vehiculo);
+        }
+        return dtoLista;
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/alertas_vehiculo")
+    public List<AlertaDTO> alertaporvehiculo(@RequestParam String placa) {
+        List<String[]> filaLista=aS.placaAlert(placa);
+        List<AlertaDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            AlertaDTO dto=new AlertaDTO();
+            dto.setFecha(LocalDate.parse(columna[0]));
+            dto.setId(Integer.parseInt(columna[1]));
+            dto.setAsunto(columna[2]);
+            dto.setDescripcion(columna[3]);
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setPlaca(columna[4]); // columna[4] = placa del vehículo
+            dto.setVehiculo(vehiculo);
+        }
+        return dtoLista;
+    }
+
 }

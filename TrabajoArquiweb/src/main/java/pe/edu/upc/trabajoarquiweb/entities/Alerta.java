@@ -17,7 +17,7 @@ public class Alerta {
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "placa")
     private Vehiculo vehiculo;
     public Alerta() {}
 

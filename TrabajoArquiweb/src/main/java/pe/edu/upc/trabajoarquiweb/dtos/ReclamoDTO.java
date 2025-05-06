@@ -10,7 +10,16 @@ public class ReclamoDTO {
     private String asunto;
     private LocalDate fecha;
     private String descripcion;
+    private Boolean resuelto;
     private Usuario usuario;
+
+    public Boolean getResuelto() {
+        return resuelto;
+    }
+
+    public void setResuelto(Boolean resuelto) {
+        this.resuelto = resuelto;
+    }
 
     public int getId() {
         return id;

@@ -1,7 +1,9 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IAlertaService {
@@ -11,6 +13,7 @@ public interface IAlertaService {
     public void delete(int id);
     public List<String[]> usersMoreAlert();
     public List<String[]> typeAlertmore();
-
+    public List<String[]> fechaAlertmore(LocalDate fecha1,LocalDate fecha2);
+    public List<String[]> placaAlert(String placa);
 
 }
