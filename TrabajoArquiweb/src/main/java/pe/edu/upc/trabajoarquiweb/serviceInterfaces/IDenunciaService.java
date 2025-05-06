@@ -11,4 +11,6 @@ public interface IDenunciaService {
     public void update(Denuncia denuncia);
     public void delete(int id);
     public List<Denuncia> buscarDenunciaPorId(int id);
+    List<String[]> buscarPorEstado(String estado);
+
 }
