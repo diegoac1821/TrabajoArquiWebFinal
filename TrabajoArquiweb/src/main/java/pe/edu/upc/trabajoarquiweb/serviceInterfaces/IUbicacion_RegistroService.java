@@ -9,4 +9,6 @@ public interface IUbicacion_RegistroService {
     public void insert(Ubicacion_Registro ubicacion);
     public void update(Ubicacion_Registro ubicacion);
     public void delete(int id);
+    public List<String[]> ultimaUbicacionRegistrada();
 }
+
