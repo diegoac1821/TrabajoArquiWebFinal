@@ -1,9 +1,18 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
-import org.modelmapper.ModelMapper;
+    import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+    import pe.edu.upc.trabajoarquiweb.dtos.NVehiculosUsuarioDTO;
+    import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+
 import pe.edu.upc.trabajoarquiweb.dtos.CantidadConsultasPorUsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
@@ -29,25 +38,28 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public UsuarioDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.searchId(id), UsuarioDTO.class);
         return dto;
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping
     public void eliminar(@PathVariable("id") int id) {
         uS.delete(id);
@@ -59,4 +71,28 @@ public class UsuarioController {
             return m.map(h,UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/cantidadvehiculosusuario")
+    public List<NVehiculosUsuarioDTO> listarCantidadVehiculosPorUsuario(){
+        List<String[]> ealista=uS.cantidadVehiculosPorUsuario();
+        List<NVehiculosUsuarioDTO> dtoLista=new ArrayList<>();
+        for (String[] columna : ealista) {
+                NVehiculosUsuarioDTO uDTO = new NVehiculosUsuarioDTO();
+                uDTO.setId(Integer.parseInt(columna[0]));
+                uDTO.setNombres(columna[1]);
+                uDTO.setListaVehiculosPorUsuario(Integer.parseInt(columna[2]));
+                dtoLista.add(uDTO);
+        }
+        return dtoLista;
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/filtrar-edad")
+    public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
+        ModelMapper m = new ModelMapper();
+        return uS.filtrarUsuariosPorEdad(min, max).stream()
+                .map(u -> m.map(u, UsuarioDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

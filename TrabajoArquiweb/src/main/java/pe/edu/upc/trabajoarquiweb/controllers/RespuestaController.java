@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.RespuestaDTO;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRepuestaService;
@@ -16,6 +17,7 @@ public class  RespuestaController {
     @Autowired
     private IRepuestaService rrS;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<RespuestaDTO> listar() {
         return rrS.list().stream().map(x->{
@@ -31,6 +33,7 @@ public class  RespuestaController {
         rrS.insert(r);
     }*/
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public RespuestaDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
@@ -46,6 +49,7 @@ public class  RespuestaController {
         }
 
          */
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping
     public void eliminar(@PathVariable("id") int id) {
         rrS.delete(id);
