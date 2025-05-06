@@ -58,7 +58,7 @@ public class ReclamoController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/reclamossinresolver")
-    public List<ReclamoDTO> Cantidaddenunciasxcomisaria() {
+    public List<ReclamoDTO> reclamossinresolver() {
         List<String[]> filaLista = rS.findByFechaAfter();
         List<ReclamoDTO> dtoLista = new ArrayList<>();
         for (String[] columna : filaLista) {
