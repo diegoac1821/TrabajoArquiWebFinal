@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
 public class CantDenunciasComisariaDTO {
     private String nombre;

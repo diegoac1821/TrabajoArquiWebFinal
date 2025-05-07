@@ -3,14 +3,11 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.CantDenunciasComisariaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.ReclamoDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.ReclamoResueltosDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.reclamo.ReclamoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Reclamo;
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IReclamoService;
 
 import java.time.LocalDate;
@@ -58,15 +55,14 @@ public class ReclamoController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/reclamossinresolver")
-    public List<ReclamoDTO> reclamossinresolver() {
-        List<String[]> filaLista = rS.findByFechaAfter();
-        List<ReclamoDTO> dtoLista = new ArrayList<>();
+    public List<ReclamoResueltosDTO> reclamossinresolver() {
+        List<String[]> filaLista = rS.reclamosinresolver();
+        List<ReclamoResueltosDTO> dtoLista = new ArrayList<>();
         for (String[] columna : filaLista) {
-            ReclamoDTO dto = new ReclamoDTO();
+            ReclamoResueltosDTO dto = new ReclamoResueltosDTO();
             dto.setFecha(LocalDate.parse(columna[0]));
             dto.setId(Integer.parseInt(columna[1]));
-            Usuario usuario = new Usuario();
-            usuario.setId(Integer.parseInt(columna[2]));
+            dto.setUsuario(Integer.parseInt(columna[2]));
             dto.setResuelto(Boolean.parseBoolean(columna[3]));
             dto.setAsunto(columna[4]);
             dto.setDescripcion(columna[5]);

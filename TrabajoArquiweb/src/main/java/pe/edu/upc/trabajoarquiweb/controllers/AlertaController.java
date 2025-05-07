@@ -4,9 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.AlertaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.TipoAlertaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.UsuarioConTotalAlertasDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.alerta.AlertaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.AlertaQuerieDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.TipoAlertaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.UsuarioConTotalAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IAlertaService;
@@ -67,50 +68,36 @@ public class AlertaController {
         return dtoLista;
     }
 
+
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/alertas_mas_tipo")
-    public List<TipoAlertaDTO> listarAlertasMasTipo() {
-        List<String[]> filaLista=aS.typeAlertmore();
-        List<TipoAlertaDTO> dtoLista=new ArrayList<>();
+    @GetMapping("/alertas_periodo")
+    public List<AlertaQuerieDTO> alertasenperiodo(@RequestParam LocalDate fecha1, LocalDate fecha2) {
+        List<String[]> filaLista=aS.fechaAlertmore(fecha1,fecha2);
+        List<AlertaQuerieDTO> dtoLista=new ArrayList<>();
         for(String[] columna:filaLista){
-            TipoAlertaDTO dto=new TipoAlertaDTO();
-            dto.setTipoAlerta(columna[0]);
-            dto.setTotal(Long.parseLong(columna[1]));
+            AlertaQuerieDTO dto=new AlertaQuerieDTO();
+            dto.setFecha(LocalDate.parse(columna[0]));
+            dto.setId(Integer.parseInt(columna[1]));
+            dto.setAsunto(columna[2]);
+            dto.setDescripcion(columna[3]);
+            dto.setVehiculo(columna[4]);
             dtoLista.add(dto);
         }
         return dtoLista;
     }
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/alertas_periodo")
-    public List<AlertaDTO> alertasenperiodo(@RequestParam LocalDate fecha1, LocalDate fecha2) {
-        List<String[]> filaLista=aS.fechaAlertmore(fecha1,fecha2);
-        List<AlertaDTO> dtoLista=new ArrayList<>();
-        for(String[] columna:filaLista){
-            AlertaDTO dto=new AlertaDTO();
-            dto.setFecha(LocalDate.parse(columna[0]));
-            dto.setId(Integer.parseInt(columna[1]));
-            dto.setAsunto(columna[2]);
-            dto.setDescripcion(columna[3]);
-            Vehiculo vehiculo = new Vehiculo();
-            vehiculo.setPlaca(columna[4]); // columna[4] = placa del vehículo
-            dto.setVehiculo(vehiculo);
-        }
-        return dtoLista;
-    }
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/alertas_vehiculo")
-    public List<AlertaDTO> alertaporvehiculo(@RequestParam String placa) {
+    public List<AlertaQuerieDTO> alertaporvehiculo(@RequestParam String placa) {
         List<String[]> filaLista=aS.placaAlert(placa);
-        List<AlertaDTO> dtoLista=new ArrayList<>();
+        List<AlertaQuerieDTO> dtoLista=new ArrayList<>();
         for(String[] columna:filaLista){
-            AlertaDTO dto=new AlertaDTO();
+            AlertaQuerieDTO dto=new AlertaQuerieDTO();
             dto.setFecha(LocalDate.parse(columna[0]));
             dto.setId(Integer.parseInt(columna[1]));
             dto.setAsunto(columna[2]);
             dto.setDescripcion(columna[3]);
-            Vehiculo vehiculo = new Vehiculo();
-            vehiculo.setPlaca(columna[4]); // columna[4] = placa del vehículo
-            dto.setVehiculo(vehiculo);
+            dto.setVehiculo(columna[4]);
+            dtoLista.add(dto);
         }
         return dtoLista;
     }

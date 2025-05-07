@@ -34,8 +34,9 @@ public class ComisariaServiceimplement implements IComisariaService {
     }
 
     @Override
-    public List<Comisaria> buscarComisariaPorDistrito(String distrito) {
+    public List<String[]> buscarComisariaPorDistrito(String distrito) {
         return cR.buscarComisariaPorDistrito(distrito);}
+    @Override
     public List<String[]> cantidaddenunciasporcomisaria() {
         return cR.cantidaddenunciasporcomisaria();
     }

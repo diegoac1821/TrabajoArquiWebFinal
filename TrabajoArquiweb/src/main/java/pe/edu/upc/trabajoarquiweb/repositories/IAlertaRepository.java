@@ -11,30 +11,14 @@ import java.util.List;
 
 @Repository
 public interface IAlertaRepository extends JpaRepository<Alerta, Integer> {
-    @Query(value = "SELECT\n" +
-            "    u.nombres || ' ' || u.apellidos AS nombre_completo,\n" +
-            "    COUNT(a.id) AS total_alertas\n" +
-            "FROM\n" +
-            "    Usuario u\n" +
-            "JOIN\n" +
-            "    Vehiculo v ON u.id = v.usuario\n" +
-            "JOIN\n" +
-            "    Alerta a ON v.placa = a.vehiculo\n" +
-            "GROUP BY\n" +
-            "    nombre_completo\n" +
-            "ORDER BY\n" +
-            "    total_alertas DESC\n",nativeQuery = true )
+    @Query(value = "SELECT u.nombres || ' ' || u.apellidos AS nombre_completo, \n" +
+            "COUNT(a.id) AS total_alertas \n" +
+            "FROM usuario u \n" +
+            "JOIN vehiculo v ON u.id = v.id_user \n" +
+            "JOIN alerta a ON v.placa = a.placa \n" +
+            "GROUP BY nombre_completo ORDER BY total_alertas DESC;",nativeQuery = true )
     public List<String[]> usersMoreAlert();
-    @Query(value = "SELECT\n" +
-            "    a.Tipo AS tipo_alerta,\n" +
-            "    COUNT(*) AS total\n" +
-            "FROM\n" +
-            "    Alerta a\n" +
-            "GROUP BY\n" +
-            "    a.Tipo\n" +
-            "ORDER BY\n" +
-            "    total DESC",nativeQuery = true)
-    public List<String[]> typeAlertmore();
+
     @Query(value="SELECT * \n" +
             "FROM alerta\n" +
             "WHERE fecha BETWEEN :fecha1 AND :fecha2;",nativeQuery = true)
@@ -42,8 +26,8 @@ public interface IAlertaRepository extends JpaRepository<Alerta, Integer> {
                                          @Param("fecha2") LocalDate fecha2);
     @Query(value="SELECT a.*\n" +
             "FROM alerta a\n" +
-            "JOIN vehiculo v ON a.id_user = v.id_user::text\n" +
-            "WHERE v.placa = :placa;",nativeQuery = true)
+            "JOIN vehiculo v ON a.placa = v.placa\n" +
+            "  WHERE v.placa = :placa \n",nativeQuery = true)
     public List<String[]> placaAlert(@Param("placa") String placa);
 
 }

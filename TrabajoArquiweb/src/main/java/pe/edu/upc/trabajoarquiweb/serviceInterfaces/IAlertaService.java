@@ -12,7 +12,6 @@ public interface IAlertaService {
     public void update(Alerta alerta);
     public void delete(int id);
     public List<String[]> usersMoreAlert();
-    public List<String[]> typeAlertmore();
     public List<String[]> fechaAlertmore(LocalDate fecha1,LocalDate fecha2);
     public List<String[]> placaAlert(String placa);
 

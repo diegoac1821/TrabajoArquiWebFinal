@@ -1,25 +1,15 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.alerta;
 
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
 import java.time.LocalDate;
 
-public class ReclamoDTO {
-
+public class AlertaDTO {
     private int id;
     private String asunto;
     private LocalDate fecha;
     private String descripcion;
-    private Boolean resuelto;
-    private Usuario usuario;
-
-    public Boolean getResuelto() {
-        return resuelto;
-    }
-
-    public void setResuelto(Boolean resuelto) {
-        this.resuelto = resuelto;
-    }
+    private Vehiculo vehiculo;
 
     public int getId() {
         return id;
@@ -53,11 +43,11 @@ public class ReclamoDTO {
         this.descripcion = descripcion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 }

@@ -35,7 +35,7 @@ public class ReclamoServiceImplement implements IReclamoService {
     }
 
     @Override
-    public List<String[]> findByFechaAfter() {
-        return rR.findByFechaAfter();
+    public List<String[]> reclamosinresolver() {
+        return rR.reclamosinresolver();
     }
 }

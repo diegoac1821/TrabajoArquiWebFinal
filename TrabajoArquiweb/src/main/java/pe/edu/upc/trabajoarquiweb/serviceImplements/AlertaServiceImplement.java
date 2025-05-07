@@ -42,10 +42,7 @@ public class AlertaServiceImplement implements IAlertaService {
         return aS.usersMoreAlert();
     }
 
-    @Override
-    public List<String[]> typeAlertmore() {
-        return aS.typeAlertmore();
-    }
+
 
     @Override
     public List<String[]> fechaAlertmore(LocalDate fecha1, LocalDate fecha2) {
