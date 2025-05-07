@@ -34,10 +34,9 @@ public class Usuario implements Serializable {
     private String username;
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private List<Rol> roles;
-
     public Usuario() {}
 
     public Usuario(int id, int dni, String nombres, String apellidos, String direccion, String correo_electronico, LocalDate fechaNacimiento, int edad, int telefono, String password, String username, Boolean enabled, List<Rol> roles) {
