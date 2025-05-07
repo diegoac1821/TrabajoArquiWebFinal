@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.RespuestaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.respuesta.RespuestaDTO;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRepuestaService;
 
 import java.util.List;

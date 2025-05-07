@@ -9,8 +9,7 @@ import java.util.List;
 
 @Repository
 public interface IReclamoRepository extends JpaRepository<Reclamo, Integer> {
-    @Query(value="SELECT r.*\n" +
-            "FROM reclamo r\n" +
-            "WHERE r.resuelto = FALSE\n" +
-            "  AND r.fecha <= CURRENT_DATE - INTERVAL '7 days';\n",nativeQuery = true)
-    public List<String[]> findByFechaAfter();}
+    @Query(value="SELECT *\n" +
+            "FROM reclamo r \n" +
+            "WHERE r.resuelto = false \n" ,nativeQuery = true)
+    public List<String[]> reclamosinresolver();}

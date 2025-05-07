@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.RolDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.denuncia.DenunciaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.rol.RolDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Rol;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
 

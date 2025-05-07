@@ -18,8 +18,8 @@ public interface IDenunciaRepository extends JpaRepository<Denuncia, Integer> {
     List<Denuncia> buscarPorId(@Param("id") int id);
 
     @Query(value = "SELECT * \n" +
-            "FROM denuncia\n" +
-            "WHERE estado = :estado;",nativeQuery = true)
+            "FROM denuncia d \n" +
+            "WHERE d.estado = :estado;",nativeQuery = true)
     List<String[]> buscarPorEstado(@Param("estado") String estado);
 
     }
