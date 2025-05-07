@@ -6,8 +6,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
     import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.NVehiculosUsuarioDTO;
     import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
+    import pe.edu.upc.trabajoarquiweb.entities.Rol;
+    import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+    import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
+    import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
 
     import java.util.ArrayList;
     import java.util.List;
@@ -20,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService uS;
+    @Autowired
+    private IRolService rS;
+
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -34,9 +39,19 @@ public class UsuarioController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
-        Usuario u = m.map(dto, Usuario.class);
-        uS.insert(u);
+
+        // Mapear DTO a entidad
+        Usuario usuario = m.map(dto, Usuario.class);
+
+        // Guardar usuario
+        uS.insert(usuario); // no devuelve nada
+
+        Rol rolCliente = new Rol();
+        rolCliente.setRol("CLIENTE");
+        rolCliente.setUser(usuario); // usar el original, no uno nuevo
+        rS.insert(rolCliente);
     }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public UsuarioDTO listarId(@PathVariable("id") int id) {

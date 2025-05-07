@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 import pe.edu.upc.trabajoarquiweb.repositories.IUsuarioRepository;
@@ -14,6 +15,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository uR;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public List<Usuario> list() {
         return uR.findAll();
@@ -21,6 +24,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void insert(Usuario usuario) {
+        // Codifica la contraseña ANTES de guardar
+        String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(encodedPassword);
         uR.save(usuario);
     }
 
