@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro;
 
 import pe.edu.upc.trabajoarquiweb.entities.Dispositivo_GPS;
 

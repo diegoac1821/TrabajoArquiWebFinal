@@ -4,23 +4,17 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-    import pe.edu.upc.trabajoarquiweb.dtos.NVehiculosUsuarioDTO;
-    import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
+    import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.NVehiculosUsuarioDTO;
+    import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO;
+    import pe.edu.upc.trabajoarquiweb.entities.Rol;
+    import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+    import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
+    import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
 
     import java.util.ArrayList;
-    import java.util.Arrays;
     import java.util.List;
 
-import pe.edu.upc.trabajoarquiweb.dtos.CantidadConsultasPorUsuarioDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.UsuarioDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+    import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -28,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService uS;
+    @Autowired
+    private IRolService rS;
+
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -38,33 +35,44 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
-        Usuario u = m.map(dto, Usuario.class);
-        uS.insert(u);
+
+        // Mapear DTO a entidad
+        Usuario usuario = m.map(dto, Usuario.class);
+
+        // Guardar usuario
+        uS.insert(usuario); // no devuelve nada
+
+        Rol rolCliente = new Rol();
+        rolCliente.setRol("CLIENTE");
+        rolCliente.setUser(usuario); // usar el original, no uno nuevo
+        rS.insert(rolCliente);
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public UsuarioDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.searchId(id), UsuarioDTO.class);
         return dto;
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         uS.delete(id);
     }
     @GetMapping("/busquedas")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> buscar(@RequestParam String n) {
         return uS.search(n).stream().map(h->{
             ModelMapper m = new ModelMapper();
@@ -72,8 +80,8 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/cantidadvehiculosusuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<NVehiculosUsuarioDTO> listarCantidadVehiculosPorUsuario(){
         List<String[]> ealista=uS.cantidadVehiculosPorUsuario();
         List<NVehiculosUsuarioDTO> dtoLista=new ArrayList<>();
@@ -86,8 +94,8 @@ public class UsuarioController {
         }
         return dtoLista;
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/filtrar-edad")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
         ModelMapper m = new ModelMapper();
         return uS.filtrarUsuariosPorEdad(min, max).stream()

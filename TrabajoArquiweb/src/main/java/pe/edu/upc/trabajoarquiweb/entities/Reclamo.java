@@ -16,6 +16,9 @@ public class Reclamo {
     private LocalDate fecha;
     @Column(name = "descripcion", nullable = false, length = 250)
     private String descripcion;
+    @Column(name = "Resuelto", nullable = false)
+    private Boolean resuelto;
+
 
     @ManyToOne
     @JoinColumn(name = "idUser")
@@ -23,12 +26,21 @@ public class Reclamo {
 
     public Reclamo() {}
 
-    public Reclamo(int id, String asunto, LocalDate fecha, String descripcion, Usuario usuario) {
+    public Reclamo(int id, String asunto, LocalDate fecha, String descripcion, Boolean resuelto, Usuario usuario) {
         this.id = id;
         this.asunto = asunto;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.resuelto = resuelto;
         this.usuario = usuario;
+    }
+
+    public Boolean getResuelto() {
+        return resuelto;
+    }
+
+    public void setResuelto(Boolean resuelto) {
+        this.resuelto = resuelto;
     }
 
     public String getAsunto() {

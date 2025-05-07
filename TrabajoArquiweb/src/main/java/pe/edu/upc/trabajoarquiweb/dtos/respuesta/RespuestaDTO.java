@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.respuesta;
 
 import pe.edu.upc.trabajoarquiweb.entities.Consulta;
 

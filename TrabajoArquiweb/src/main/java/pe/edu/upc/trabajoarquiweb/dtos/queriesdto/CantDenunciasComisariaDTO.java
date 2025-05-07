@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
 public class CantDenunciasComisariaDTO {
     private String nombre;
@@ -19,4 +19,5 @@ public class CantDenunciasComisariaDTO {
     public void setDenunciasporcomisaria(int denunciasporcomisaria) {
         this.denunciasporcomisaria = denunciasporcomisaria;
     }
+    
 }

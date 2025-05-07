@@ -38,4 +38,9 @@ public class DenunciaServiceImplement implements IDenunciaService {
         return dR.buscarPorId(id);
     }
 
+    @Override
+    public List<String[]> buscarPorEstado(String estado) {
+        return dR.buscarPorEstado(estado);
+    }
+
 }

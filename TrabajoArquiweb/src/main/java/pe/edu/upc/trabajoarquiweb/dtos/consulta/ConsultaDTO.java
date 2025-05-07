@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.consulta;
 
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 

@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.CantDenunciasComisariaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.ComisariaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.CantDenunciasComisariaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.comisaria.ComisariaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IComisariaService;
 
@@ -56,22 +56,35 @@ public class ComisariaController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/buscarDistrito")
     public List<ComisariaDTO> buscarComisariaPorDistrito(@RequestParam String distrito) {
-        return cS.buscarComisariaPorDistrito(distrito).stream().map(h->{
-            ModelMapper m = new ModelMapper();
-            return m.map(h, ComisariaDTO.class);
-        }).collect(Collectors.toList());
+        List<String[]> filaLista = cS.buscarComisariaPorDistrito(distrito);
+        List<ComisariaDTO> dtoLista = new ArrayList<>();
+        for (String[] columna : filaLista) {
+            ComisariaDTO dto = new ComisariaDTO();
+            dto.setId(Integer.parseInt(columna[0]));
+            dto.setTelefono(Integer.parseInt(columna[1]));
+            dto.setDireccion(columna[2]);
+            dto.setDistrito(columna[3]);
+            dto.setNombre(columna[4]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
 
-//    @GetMapping("/denunciasxcomisaria")
-//    public List<CantDenunciasComisariaDTO> Cantidaddenunciasxcomisaria(){
-//        List<String[]> filaLista=cS.cantidaddenunciasporcomisaria();
-//        List<CantDenunciasComisariaDTO> dtoLista=new ArrayList<>();
-//        for(String[] columna:filaLista){
-//            CantDenunciasComisariaDTO dto=new CantDenunciasComisariaDTO();
-//            dto.setNombre(columna[0]);
-//            dto.setDenunciasporcomisaria(Integer.parseInt(columna[1]));
-//            dtoLista.add(dto);
-//        }
-//        return dtoLista
-//    }
     }
+
+    @GetMapping("/denunciasxcomisaria")
+    public List<CantDenunciasComisariaDTO> Cantidaddenunciasxcomisaria() {
+        List<String[]> filaLista = cS.cantidaddenunciasporcomisaria();
+        List<CantDenunciasComisariaDTO> dtoLista = new ArrayList<>();
+        for (String[] columna : filaLista) {
+            CantDenunciasComisariaDTO dto = new CantDenunciasComisariaDTO();
+            dto.setNombre(columna[0]);
+            dto.setDenunciasporcomisaria(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+
+    }
+
+
+
 }
