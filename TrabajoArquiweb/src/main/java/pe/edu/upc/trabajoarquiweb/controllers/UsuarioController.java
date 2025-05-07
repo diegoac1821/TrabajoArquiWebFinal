@@ -51,11 +51,7 @@ public class UsuarioController {
         rolCliente.setUser(usuario); // usar el original, no uno nuevo
         rS.insert(rolCliente);
     }
-//    public void insertar(@RequestBody UsuarioDTO dto) {
-//        ModelMapper m = new ModelMapper();
-//        Usuario u = m.map(dto, Usuario.class);
-//        uS.insert(u);
-//    }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public UsuarioDTO listarId(@PathVariable("id") int id) {
