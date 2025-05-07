@@ -41,9 +41,9 @@ public class VehiculoController {
         vS.update(a);
     }
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") String id) {
-        vS.delete(id);
+    @DeleteMapping("/{placa}")
+    public void eliminar(@PathVariable("placa") String placa) {
+        vS.delete(placa);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
