@@ -21,12 +21,11 @@ public class RolController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
-    public List<RolDTO> listar() {
-        return rS.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, RolDTO.class);
-        }).collect(Collectors.toList());
-
+    public List<RolDTO> listarRoles() {
+        List<Rol> lista = rS.list(); // o findAll()
+        return lista.stream()
+                .map(r -> new RolDTO(r.getId(), r.getRol()))
+                .collect(Collectors.toList());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
