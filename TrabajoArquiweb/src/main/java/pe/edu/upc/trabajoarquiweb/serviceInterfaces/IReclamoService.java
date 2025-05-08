@@ -9,4 +9,5 @@ public interface IReclamoService {
     public void insert(Reclamo r);
     public void delete(int id);
     public void update(Reclamo r);
+    public List<String[]> reclamosinresolver();
 }

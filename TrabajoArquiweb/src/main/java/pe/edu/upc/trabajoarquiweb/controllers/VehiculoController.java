@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.VehiculoDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.VehiculoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IVehiculoService;
 
@@ -41,9 +41,9 @@ public class VehiculoController {
         vS.update(a);
     }
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") String id) {
-        vS.delete(id);
+    @DeleteMapping("/{placa}")
+    public void eliminar(@PathVariable("placa") String placa) {
+        vS.delete(placa);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

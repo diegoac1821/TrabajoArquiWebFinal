@@ -4,10 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.RutaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.RutasperiodoplacaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.ruta.RutaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Ruta;
+import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRutaService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +39,7 @@ public class RutaController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/{id}")
+    @GetMapping("/listar/{id}")
     public RutaDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         RutaDTO dto = m.map(rS.searchId(id), RutaDTO.class);
@@ -50,8 +54,30 @@ public class RutaController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         rS.delete(id);
+    }
+
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/rutas_periodo_placa")
+    public List<RutasperiodoplacaDTO> rutas_periodo_placa(@RequestParam LocalDate fecha1, LocalDate fecha2, String placa) {
+        List<String[]> filaLista=rS.RutasenPeriodo(fecha1,fecha2,placa);
+        List<RutasperiodoplacaDTO> dtoLista=new ArrayList<>();
+        for(String[] columna:filaLista){
+            RutasperiodoplacaDTO dto=new RutasperiodoplacaDTO();
+            dto.setDistancia(Integer.parseInt(columna[0]));
+            dto.setDuracion(Integer.parseInt(columna[1]));
+            dto.setFecha(LocalDate.parse(columna[2]));
+            dto.setId(Integer.parseInt(columna[3]));
+            dto.setDestinoLatitud(columna[4]);
+            dto.setDestinoLongitud(columna[5]);
+            dto.setOrigenLatitud(columna[6]);
+            dto.setOrigenLongitud(columna[7]);
+            dto.setPlaca(columna[8]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

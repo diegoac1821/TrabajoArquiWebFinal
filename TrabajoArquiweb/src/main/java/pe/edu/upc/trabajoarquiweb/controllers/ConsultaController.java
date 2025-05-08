@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.CantidadConsultasPorUsuarioDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.ConsultaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.CantidadConsultasPorUsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.consulta.ConsultaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Consulta;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IConsultaService;
 

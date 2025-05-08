@@ -11,7 +11,7 @@ public interface IComisariaService {
     public void update(Comisaria comisaria);
     public void delete(int id);
 
-    public List<Comisaria> buscarComisariaPorDistrito(String distrito);
+    public List<String[]> buscarComisariaPorDistrito(String distrito);
 
     public List<String[]> cantidaddenunciasporcomisaria();
 }

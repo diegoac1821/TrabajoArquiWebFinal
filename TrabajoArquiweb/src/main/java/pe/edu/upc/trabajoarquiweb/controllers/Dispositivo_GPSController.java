@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.Dispositivo_GPSDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.dispostivo_gps.Dispositivo_GPSDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Dispositivo_GPS;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDispositivo_GPSService;
 

@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.Ubicacion_RegistroDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro.Ubicacion_RegistroDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Ubicacion_Registro;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUbicacion_RegistroService;
 

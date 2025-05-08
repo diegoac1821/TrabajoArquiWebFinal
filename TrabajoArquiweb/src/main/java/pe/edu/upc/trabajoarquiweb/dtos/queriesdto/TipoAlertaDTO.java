@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
 public class TipoAlertaDTO {
     private String tipoAlerta;

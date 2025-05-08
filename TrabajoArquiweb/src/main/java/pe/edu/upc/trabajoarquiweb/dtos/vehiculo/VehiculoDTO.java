@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.vehiculo;
 
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
@@ -10,7 +10,6 @@ public class VehiculoDTO {
     private String marca;
 
     private String modelo;
-
 
     private Usuario usuario;
 
