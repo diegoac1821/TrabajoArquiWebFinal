@@ -27,7 +27,7 @@ public class UsuarioController {
 
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public List<UsuarioDTO> listar() {
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -36,7 +36,6 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
 
