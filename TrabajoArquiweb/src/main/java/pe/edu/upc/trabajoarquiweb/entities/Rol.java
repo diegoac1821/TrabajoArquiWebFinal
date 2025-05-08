@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -12,10 +13,11 @@ public class Rol implements Serializable {
     private Long id;
 
     private String rol;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private Usuario user;
+
 
     public Rol() {}
 
