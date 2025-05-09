@@ -15,7 +15,7 @@ public class Vehiculo {
     private String modelo;
 
     @ManyToOne
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "idUser",nullable = false)
     private Usuario usuario;
     public Vehiculo() {}
 

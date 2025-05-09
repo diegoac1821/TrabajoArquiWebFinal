@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoarquiweb.dtos.DenunciaDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.RolDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.denuncia.DenunciaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.rol.RolDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Rol;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
 
@@ -21,12 +21,11 @@ public class RolController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
-    public List<RolDTO> listar() {
-        return rS.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, RolDTO.class);
-        }).collect(Collectors.toList());
-
+    public List<RolDTO> listarRoles() {
+        List<Rol> lista = rS.list(); // o findAll()
+        return lista.stream()
+                .map(r -> new RolDTO(r.getId(), r.getRol()))
+                .collect(Collectors.toList());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

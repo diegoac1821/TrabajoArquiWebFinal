@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.dispostivo_gps;
 
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 

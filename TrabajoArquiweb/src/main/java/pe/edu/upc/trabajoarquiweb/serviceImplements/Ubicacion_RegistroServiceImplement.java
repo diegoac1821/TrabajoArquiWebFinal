@@ -37,9 +37,4 @@ public class Ubicacion_RegistroServiceImplement implements IUbicacion_RegistroSe
         ruS.deleteById(id);
 
     }
-
-    @Override
-    public List<String[]> ultimaUbicacionRegistrada() {
-        return ruS.ultimaUbicacionRegistrada();
-    }
 }

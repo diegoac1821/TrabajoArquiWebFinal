@@ -9,13 +9,4 @@ import java.util.List;
 
 @Repository
 public interface IUbicacion_RegistroRepository extends JpaRepository<Ubicacion_Registro, Integer> {
-
-    @Query(value = "SELECT u.id AS dispositivo_id, u.latitud, u.longitud, u.fecha, u.hora\n" +
-            "FROM ubicacion_registro u\n" +
-            "INNER JOIN (\n" +
-            "    SELECT idd, MAX(fecha || ' ' || hora) AS ultima_fecha\n" +
-            "    FROM ubicacion_registro\n" +
-            "    GROUP BY idd) ult ON u.idd = ult.idd \n" +
-            "\tAND (u.fecha || ' ' || u.hora) = ult.ultima_fecha;",nativeQuery = true)
-    public List<String[]> ultimaUbicacionRegistrada();
 }

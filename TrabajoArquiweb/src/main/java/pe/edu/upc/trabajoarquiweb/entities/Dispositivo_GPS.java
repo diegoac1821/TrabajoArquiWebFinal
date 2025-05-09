@@ -15,7 +15,7 @@ public class Dispositivo_GPS {
     private String numeroSerie;
     @Column(name = "precio", nullable = false)
     private double precio;
-    @Column(name = "fecha_adquisicion", nullable = false)
+    @Column(name = "fechaAdquisicion", nullable = false)
     private LocalDate fechaAdquisicion;
 
     @OneToOne
