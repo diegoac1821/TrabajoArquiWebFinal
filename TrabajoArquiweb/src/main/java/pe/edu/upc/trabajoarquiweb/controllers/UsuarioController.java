@@ -27,7 +27,7 @@ public class UsuarioController {
 
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
     public List<UsuarioDTO> listar() {
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -36,7 +36,6 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
 
@@ -66,11 +65,15 @@ public class UsuarioController {
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         uS.delete(id);
     }
+
+
+
+
     @GetMapping("/busquedas")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> buscar(@RequestParam String n) {
