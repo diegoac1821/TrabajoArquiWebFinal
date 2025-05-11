@@ -37,4 +37,10 @@ public class VehiculoServiceImplement implements IVehiculoService {
     public List<Vehiculo> buscarporplaca(String placa) {
         return vR.buscarporplaca(placa);
     }
+
+    @Override
+    public List<Vehiculo> listarVehiculosPorUsername(String username) {
+        return vR.findByUsuarioUsername(username);
+    }
+
 }

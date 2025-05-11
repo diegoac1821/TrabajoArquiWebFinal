@@ -39,4 +39,9 @@ public class ConsultaServiceImplement implements IConsultaService {
     public List<String[]> cantidadConsultasPorUsuario() {
         return cR.cantidadConsultasPorUsuario();
     }
+
+    @Override
+    public List<Consulta> listarConsultasPorUsername(String username) {
+        return cR.findByUsuarioUsername(username);
+    }
 }

@@ -37,4 +37,9 @@ public class Ubicacion_RegistroServiceImplement implements IUbicacion_RegistroSe
         ruS.deleteById(id);
 
     }
+
+    @Override
+    public List<Ubicacion_Registro> listarUbicacionesPorUsername(String username) {
+        return ruS.findByDisGPSVehiculoUsuarioUsername(username);
+    }
 }

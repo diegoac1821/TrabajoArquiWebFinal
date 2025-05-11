@@ -14,6 +14,9 @@ public interface IConsultaRepository extends JpaRepository<Consulta, Integer> {
             " FROM usuario u\n" +
             " LEFT JOIN consulta c ON u.id = c.id_user\n" +
             " GROUP BY u.id, u.nombres, u.apellidos\n" +
-            " ORDER BY u.nombres, u.apellidos;",nativeQuery = true)
+            " ORDER BY cantidad_consultas DESC;",nativeQuery = true)
     public List<String[]> cantidadConsultasPorUsuario();
+
+    List<Consulta> findByUsuarioUsername(String username);
+
 }
