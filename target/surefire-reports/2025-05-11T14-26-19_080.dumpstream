@@ -1,0 +1,5 @@
+# Created at 2025-05-11T14:26:19.273
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Arqui web intellij\TF_Diego\TrabajoArquiWebFinal-main\TrabajoArquiWebFinal-main\TrabajoArquiweb\TrabajoArquiweb\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
