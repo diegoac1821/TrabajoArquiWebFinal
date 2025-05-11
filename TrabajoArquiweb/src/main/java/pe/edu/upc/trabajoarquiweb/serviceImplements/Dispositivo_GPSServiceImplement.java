@@ -32,4 +32,10 @@ public class Dispositivo_GPSServiceImplement implements IDispositivo_GPSService 
     public void delete(int id) {
         gR.deleteById(id);
     }
+
+    @Override
+    public List<Dispositivo_GPS> listarGPSPorUsername(String username) {
+        return gR.findByVehiculoUsuarioUsername(username);
+    }
+
 }

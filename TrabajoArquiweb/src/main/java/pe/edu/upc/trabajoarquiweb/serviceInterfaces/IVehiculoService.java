@@ -10,4 +10,5 @@ public interface IVehiculoService {
     public void update(Vehiculo vehiculo);
     public void delete(String placa);
     public List<Vehiculo> buscarporplaca(String placa);
+    List<Vehiculo> listarVehiculosPorUsername(String username);
 }

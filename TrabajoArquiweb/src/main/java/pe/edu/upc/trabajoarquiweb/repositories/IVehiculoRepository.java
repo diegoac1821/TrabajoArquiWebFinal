@@ -12,4 +12,5 @@ import java.util.List;
 public interface IVehiculoRepository extends JpaRepository<Vehiculo, String> {
     @Query("Select e from Vehiculo e where e.placa like %:placa%")
     public List<Vehiculo> buscarporplaca (@Param("placa")String placa);
+    List<Vehiculo> findByUsuarioUsername(String username);
 }
