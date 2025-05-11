@@ -15,7 +15,6 @@ public class UsuarioDTO {
     private LocalDate fechaNacimiento;
     private int edad;
     private int telefono;
-    private String password;
     private String username;
     private Boolean enabled;
     private List<Rol> roles;
@@ -100,13 +99,6 @@ public class UsuarioDTO {
         this.telefono = telefono;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getUsername() {
         return username;
