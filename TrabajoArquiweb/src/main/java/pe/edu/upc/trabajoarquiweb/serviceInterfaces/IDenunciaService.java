@@ -1,6 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
-import org.springframework.data.repository.query.Param;
 import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 
 import java.util.List;

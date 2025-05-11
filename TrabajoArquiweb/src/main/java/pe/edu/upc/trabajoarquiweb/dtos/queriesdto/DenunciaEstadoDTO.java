@@ -1,7 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
-import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
 public class DenunciaEstadoDTO {
     private int id;

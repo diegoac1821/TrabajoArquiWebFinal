@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.alerta.AlertaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.alerta.MisAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.AlertaQuerieDTO;
-import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.TipoAlertaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.UsuarioConTotalAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IAlertaService;
 
 import java.time.LocalDate;

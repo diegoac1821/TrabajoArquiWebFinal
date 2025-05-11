@@ -1,9 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.dtos.usuario;
 
-import pe.edu.upc.trabajoarquiweb.entities.Rol;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class UsuarioMiperfilDTO {
     private int dni;

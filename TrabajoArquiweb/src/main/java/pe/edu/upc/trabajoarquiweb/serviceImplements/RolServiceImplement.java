@@ -2,7 +2,6 @@ package pe.edu.upc.trabajoarquiweb.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 import pe.edu.upc.trabajoarquiweb.entities.Rol;
 import pe.edu.upc.trabajoarquiweb.repositories.IRolRepository;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;

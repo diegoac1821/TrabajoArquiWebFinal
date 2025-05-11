@@ -1,6 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
-import org.springframework.data.repository.query.Param;
 import pe.edu.upc.trabajoarquiweb.dtos.alerta.MisAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
 

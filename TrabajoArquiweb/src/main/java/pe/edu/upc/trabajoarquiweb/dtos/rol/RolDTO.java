@@ -1,11 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.dtos.rol;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-
 public class RolDTO {
 
 
