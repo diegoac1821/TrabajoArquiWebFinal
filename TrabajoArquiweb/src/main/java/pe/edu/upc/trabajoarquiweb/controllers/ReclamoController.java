@@ -75,7 +75,7 @@ public class ReclamoController {
 
     }
 
-    @GetMapping("/misreclamos")
+    @GetMapping("/misreclamos") //Leslie
     @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
     public ResponseEntity<List<MisReclamosDTO>> listarMisReclamos() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
