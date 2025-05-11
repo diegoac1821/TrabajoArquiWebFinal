@@ -130,6 +130,23 @@ public class UsuarioController {
         dto.setUsername(usuario.getUsername());
         return ResponseEntity.ok(dto);
     }
+    @PutMapping("/miperfil")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<String> actualizarMiPerfil(@RequestBody UsuarioMiperfilDTO dto) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = uS.findByUsername(username);
+        // Actualizamos solo los campos permitidos
+        usuario.setDni(dto.getDni());
+        usuario.setNombres(dto.getNombres());
+        usuario.setApellidos(dto.getApellidos());
+        usuario.setDireccion(dto.getDireccion());
+        usuario.setCorreo_electronico(dto.getCorreo_electronico());
+        usuario.setFechaNacimiento(dto.getFechaNacimiento());
+        usuario.setEdad(dto.getEdad());
+        usuario.setTelefono(dto.getTelefono());
+        uS.update(usuario);
+        return ResponseEntity.ok("Perfil actualizado correctamente");
+    }
 
 
 }
