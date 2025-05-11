@@ -2,11 +2,15 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.consulta.MisConsultasDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.CantidadConsultasPorUsuarioDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.consulta.ConsultaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Consulta;
+import pe.edu.upc.trabajoarquiweb.serviceImplements.ConsultaServiceImplement;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IConsultaService;
 
 import java.util.ArrayList;
@@ -19,6 +23,8 @@ public class ConsultaController {
 
     @Autowired
     private IConsultaService cS;
+    @Autowired
+    private ConsultaServiceImplement consultaServiceImplement;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -69,4 +75,20 @@ public class ConsultaController {
         }
         return listaDTO;
     }
+
+    @GetMapping("/misconsultas")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<List<MisConsultasDTO>> listarMisConsultas() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Consulta> consultas = consultaServiceImplement.listarConsultasPorUsername(username);
+        List<MisConsultasDTO> dtos = consultas.stream().map(c -> {
+            MisConsultasDTO dto = new MisConsultasDTO();
+            dto.setConsulta(c.getConsulta());
+            dto.setFecha(c.getFecha());
+            dto.setHora(c.getHora());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+
 }

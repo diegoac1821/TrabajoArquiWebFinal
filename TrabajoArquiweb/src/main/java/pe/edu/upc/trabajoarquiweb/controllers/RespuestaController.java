@@ -40,15 +40,15 @@ public class  RespuestaController {
         RespuestaDTO dto = m.map(rrS.searchId(id), RespuestaDTO.class);
         return dto;
     }
-    /*
-        @PutMapping
+/*
+    @PutMapping
         public void modificar(@RequestBody RespuestaDTO dto) {
             ModelMapper m = new ModelMapper();
             Respuesta r = m.map(dto, Respuesta.class);
             rrS.update(r);
         }
+*/
 
-         */
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping
     public void eliminar(@PathVariable("id") int id) {

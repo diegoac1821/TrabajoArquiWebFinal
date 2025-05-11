@@ -9,4 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IUbicacion_RegistroRepository extends JpaRepository<Ubicacion_Registro, Integer> {
+    List<Ubicacion_Registro> findByDisGPSVehiculoUsuarioUsername(String username);
+
 }
