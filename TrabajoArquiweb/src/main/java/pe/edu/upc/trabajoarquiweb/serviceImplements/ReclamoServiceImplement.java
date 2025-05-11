@@ -38,4 +38,9 @@ public class ReclamoServiceImplement implements IReclamoService {
     public List<String[]> reclamosinresolver() {
         return rR.reclamosinresolver();
     }
+
+    @Override
+    public List<Reclamo> listarReclamosPorUsername(String username) {
+        return rR.findByUsuarioUsername(username);
+    }
 }

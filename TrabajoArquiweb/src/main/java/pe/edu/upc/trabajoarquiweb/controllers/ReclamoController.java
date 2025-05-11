@@ -3,9 +3,12 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.ReclamoResueltosDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.reclamo.MisReclamosDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.reclamo.ReclamoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Reclamo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IReclamoService;
@@ -71,4 +74,21 @@ public class ReclamoController {
         return dtoLista;
 
     }
+
+    @GetMapping("/misreclamos")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<List<MisReclamosDTO>> listarMisReclamos() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Reclamo> reclamos = rS.listarReclamosPorUsername(username);
+        List<MisReclamosDTO> dtos = reclamos.stream().map(reclamo -> {
+            MisReclamosDTO dto = new MisReclamosDTO();
+            dto.setAsunto(reclamo.getAsunto());
+            dto.setFecha(reclamo.getFecha());
+            dto.setDescripcion(reclamo.getDescripcion());
+            dto.setResuelto(reclamo.getResuelto());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+
 }
