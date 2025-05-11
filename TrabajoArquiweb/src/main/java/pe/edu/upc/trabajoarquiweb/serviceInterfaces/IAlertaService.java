@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
 import org.springframework.data.repository.query.Param;
+import pe.edu.upc.trabajoarquiweb.dtos.alerta.MisAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Alerta;
 
 import java.time.LocalDate;
@@ -14,5 +15,6 @@ public interface IAlertaService {
     public List<String[]> usersMoreAlert();
     public List<String[]> fechaAlertmore(LocalDate fecha1,LocalDate fecha2);
     public List<String[]> placaAlert(String placa);
+    List<MisAlertasDTO> listarAlertasPorUsername(String username);
 
 }
