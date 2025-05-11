@@ -2,10 +2,13 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
     import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.security.access.prepost.PreAuthorize;
+    import org.springframework.security.core.context.SecurityContextHolder;
+    import org.springframework.web.bind.annotation.*;
     import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.NVehiculosUsuarioDTO;
     import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO;
+    import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioMiperfilDTO;
     import pe.edu.upc.trabajoarquiweb.entities.Rol;
     import pe.edu.upc.trabajoarquiweb.entities.Usuario;
     import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
@@ -105,5 +108,28 @@ public class UsuarioController {
                 .map(u -> m.map(u, UsuarioDTO.class))
                 .collect(Collectors.toList());
     }
+    @GetMapping("/miperfil")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<UsuarioMiperfilDTO> obtenerMiPerfil() {
+        // Obtener el username del token JWT
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // Buscar al usuario por su username
+        Usuario usuario = uS.findByUsername(username);
+
+        // Construir manualmente el DTO sin exponer la contraseña
+        UsuarioMiperfilDTO dto = new UsuarioMiperfilDTO();
+        dto.setDni(usuario.getDni());
+        dto.setNombres(usuario.getNombres());
+        dto.setApellidos(usuario.getApellidos());
+        dto.setDireccion(usuario.getDireccion());
+        dto.setCorreo_electronico(usuario.getCorreo_electronico());
+        dto.setFechaNacimiento(usuario.getFechaNacimiento());
+        dto.setEdad(usuario.getEdad());
+        dto.setTelefono(usuario.getTelefono());
+        dto.setUsername(usuario.getUsername());
+        return ResponseEntity.ok(dto);
+    }
+
 
 }

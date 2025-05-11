@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.trabajoarquiweb.entities.Rol;
@@ -81,5 +82,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     public List<Usuario> filtrarUsuariosPorEdad(int min, int max) {
         return uR.filtrarPorEdad(min, max);
+    }
+
+    @Override
+    public Usuario findByUsername(String username) {
+        return uR.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
 }
