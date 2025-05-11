@@ -30,4 +30,6 @@ public interface IAlertaRepository extends JpaRepository<Alerta, Integer> {
             "  WHERE v.placa = :placa \n",nativeQuery = true)
     public List<String[]> placaAlert(@Param("placa") String placa);
 
+    List<Alerta> findByVehiculoUsuarioUsername(String username);
+
 }
