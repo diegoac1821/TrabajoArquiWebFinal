@@ -2,9 +2,12 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.alerta.AlertaDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.alerta.MisAlertasDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.AlertaQuerieDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.TipoAlertaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.UsuarioConTotalAlertasDTO;
@@ -102,4 +105,11 @@ public class AlertaController {
         return dtoLista;
     }
 
+    @GetMapping("/misalertas")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<List<MisAlertasDTO>> listarMisAlertas() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<MisAlertasDTO> alertas = aS.listarAlertasPorUsername(username);
+        return ResponseEntity.ok(alertas);
+    }
 }

@@ -10,3 +10,4 @@ public interface IUbicacion_RegistroService {
     public void update(Ubicacion_Registro ubicacion);
     public void delete(int id);
 }
+

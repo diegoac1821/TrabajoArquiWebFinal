@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Usuario findOneByUsername(String username);
@@ -33,5 +35,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query("SELECT u FROM Usuario u WHERE u.edad BETWEEN :min AND :max")
     List<Usuario> filtrarPorEdad(@Param("min") int min, @Param("max") int max);
+
+    Optional<Usuario> findByUsername(String username);
+
 
 }

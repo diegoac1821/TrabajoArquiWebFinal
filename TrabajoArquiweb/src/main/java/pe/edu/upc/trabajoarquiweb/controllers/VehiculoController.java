@@ -2,8 +2,10 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.MisVehiculosDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.VehiculoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IVehiculoService;
@@ -54,4 +56,22 @@ public class VehiculoController {
             return m.map(v, VehiculoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/misvehiculos")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<List<MisVehiculosDTO>> listarMisVehiculos() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Vehiculo> vehiculos = vS.listarVehiculosPorUsername(username);
+        // Convertir entidad a DTO manualmente
+        List<MisVehiculosDTO> dtos = vehiculos.stream().map(v -> {
+            MisVehiculosDTO dto = new MisVehiculosDTO();
+            dto.setPlaca(v.getPlaca());
+            dto.setColor(v.getColor());
+            dto.setMarca(v.getMarca());
+            dto.setModelo(v.getModelo());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+
 }
