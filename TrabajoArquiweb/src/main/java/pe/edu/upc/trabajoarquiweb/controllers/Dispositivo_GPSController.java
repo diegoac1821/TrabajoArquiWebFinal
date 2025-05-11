@@ -2,10 +2,14 @@ package pe.edu.upc.trabajoarquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.dispostivo_gps.Dispositivo_GPSDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.dispostivo_gps.MisGPSDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.MisVehiculosDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Dispositivo_GPS;
+import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDispositivo_GPSService;
 
 import java.util.List;
@@ -48,5 +52,28 @@ public class Dispositivo_GPSController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         dS.delete(id);
+    }
+
+    @GetMapping("/misgps")
+    @PreAuthorize("hasAuthority('CLIENTE') or hasAuthority('ADMIN')")
+    public ResponseEntity<List<MisGPSDTO>> listarMisGPS() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Dispositivo_GPS> gpsList =dS.listarGPSPorUsername(username);
+        List<MisGPSDTO> dtoList = gpsList.stream().map(gps -> {
+            MisGPSDTO dto = new MisGPSDTO();
+            dto.setNumeroSerie(gps.getNumeroSerie());
+            dto.setPrecio(gps.getPrecio());
+            dto.setFechaAdquisicion(gps.getFechaAdquisicion());
+            // Mapear también el vehículo asociado como MisVehiculosDTO
+            Vehiculo v = gps.getVehiculo();
+            MisVehiculosDTO vehiculoDTO = new MisVehiculosDTO();
+            vehiculoDTO.setPlaca(v.getPlaca());
+            vehiculoDTO.setColor(v.getColor());
+            vehiculoDTO.setMarca(v.getMarca());
+            vehiculoDTO.setModelo(v.getModelo());
+            dto.setVehiculo(vehiculoDTO);
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtoList);
     }
 }
