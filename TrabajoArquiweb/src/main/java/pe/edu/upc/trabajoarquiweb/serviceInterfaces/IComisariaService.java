@@ -1,7 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.serviceInterfaces;
 
 import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
-import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 
 import java.util.List;
 

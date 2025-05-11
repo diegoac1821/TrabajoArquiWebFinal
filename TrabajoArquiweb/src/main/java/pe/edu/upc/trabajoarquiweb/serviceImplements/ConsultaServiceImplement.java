@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.trabajoarquiweb.entities.Consulta;
 import pe.edu.upc.trabajoarquiweb.repositories.IConsultaRepository;
-import pe.edu.upc.trabajoarquiweb.repositories.IReclamoRepository;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IConsultaService;
 
 import java.util.List;

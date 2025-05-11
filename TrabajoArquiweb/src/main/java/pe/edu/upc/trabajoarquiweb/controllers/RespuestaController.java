@@ -25,13 +25,7 @@ public class  RespuestaController {
             return m.map(x,RespuestaDTO.class);
         }).collect(Collectors.toList());
     }
-        /*
-    @PostMapping
-    public void insertar(@RequestBody DenunciaDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Respuesta r = m.map(dto, Respuesta.class);
-        rrS.insert(r);
-    }*/
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
@@ -40,14 +34,7 @@ public class  RespuestaController {
         RespuestaDTO dto = m.map(rrS.searchId(id), RespuestaDTO.class);
         return dto;
     }
-/*
-    @PutMapping
-        public void modificar(@RequestBody RespuestaDTO dto) {
-            ModelMapper m = new ModelMapper();
-            Respuesta r = m.map(dto, Respuesta.class);
-            rrS.update(r);
-        }
-*/
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping

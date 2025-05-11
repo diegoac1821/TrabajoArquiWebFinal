@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.denuncia.DenunciaDTO;
 
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.DenunciaEstadoDTO;
-import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
 import pe.edu.upc.trabajoarquiweb.entities.Denuncia;
 
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IDenunciaService;
 
 

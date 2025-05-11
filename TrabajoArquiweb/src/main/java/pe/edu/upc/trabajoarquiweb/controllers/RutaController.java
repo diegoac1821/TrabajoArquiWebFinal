@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.RutasperiodoplacaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ruta.RutaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Ruta;
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRutaService;
 
 import java.time.LocalDate;

@@ -1,6 +1,5 @@
 package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
 import java.time.LocalDate;
 
