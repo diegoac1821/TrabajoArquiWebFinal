@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/reclamos")
+@SecurityRequirement(name = "bearerAuth")
+
 public class ReclamoController {
     @Autowired
     private IReclamoService rS;

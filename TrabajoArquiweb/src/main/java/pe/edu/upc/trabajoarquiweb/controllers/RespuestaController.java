@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/respuestas")
+@SecurityRequirement(name = "bearerAuth")
+
 public class  RespuestaController {
 
     @Autowired

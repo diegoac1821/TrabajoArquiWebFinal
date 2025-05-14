@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/ubicaciones")
+@SecurityRequirement(name = "bearerAuth")
+
 public class Ubicacion_RegistroController {
     @Autowired//Injeccion de dependencias
     private IUbicacion_RegistroService ruS;
