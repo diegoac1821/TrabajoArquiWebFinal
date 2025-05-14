@@ -1,23 +1,24 @@
 package pe.edu.upc.trabajoarquiweb.controllers;
 
-    import org.modelmapper.ModelMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.http.ResponseEntity;
-    import org.springframework.security.access.prepost.PreAuthorize;
-    import org.springframework.security.core.context.SecurityContextHolder;
-    import org.springframework.web.bind.annotation.*;
-    import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.NVehiculosUsuarioDTO;
-    import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO;
-    import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioMiperfilDTO;
-    import pe.edu.upc.trabajoarquiweb.entities.Rol;
-    import pe.edu.upc.trabajoarquiweb.entities.Usuario;
-    import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
-    import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.queriesdto.NVehiculosUsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO;
+import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO2;
+import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioMiperfilDTO;
+import pe.edu.upc.trabajoarquiweb.entities.Rol;
+import pe.edu.upc.trabajoarquiweb.entities.Usuario;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRolService;
+import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IUsuarioService;
 
-    import java.util.ArrayList;
-    import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-    import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -31,10 +32,10 @@ public class UsuarioController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CLIENTE')")
-    public List<UsuarioDTO> listar() {
+    public List<UsuarioDTO2> listar() {
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x,UsuarioDTO2.class);
         }).collect(Collectors.toList());
     }
 

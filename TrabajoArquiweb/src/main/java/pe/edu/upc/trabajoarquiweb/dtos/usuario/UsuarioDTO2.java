@@ -5,7 +5,7 @@ import pe.edu.upc.trabajoarquiweb.entities.Rol;
 import java.time.LocalDate;
 import java.util.List;
 
-public class UsuarioDTO {
+public class UsuarioDTO2 {
     private int id;
     private int dni;
     private String nombres;
@@ -16,25 +16,7 @@ public class UsuarioDTO {
     private int edad;
     private int telefono;
     private String username;
-    private String password;
-    private Boolean enabled;
     private List<Rol> roles;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
 
     public int getId() {
         return id;
@@ -107,7 +89,6 @@ public class UsuarioDTO {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
 
     public String getUsername() {
         return username;
