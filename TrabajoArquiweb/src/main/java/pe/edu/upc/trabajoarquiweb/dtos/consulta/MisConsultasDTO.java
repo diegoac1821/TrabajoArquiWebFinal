@@ -2,11 +2,12 @@ package pe.edu.upc.trabajoarquiweb.dtos.consulta;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class MisConsultasDTO {
     private String consulta;
     private LocalDate fecha;
-    private Time hora;
+    private LocalTime hora;
 
     public String getConsulta() {
         return consulta;
@@ -24,11 +25,11 @@ public class MisConsultasDTO {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 }

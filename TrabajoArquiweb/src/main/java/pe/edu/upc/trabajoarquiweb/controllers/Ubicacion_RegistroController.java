@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/ubicaciones")
 @SecurityRequirement(name = "bearerAuth")
-
 public class Ubicacion_RegistroController {
     @Autowired//Injeccion de dependencias
     private IUbicacion_RegistroService ruS;

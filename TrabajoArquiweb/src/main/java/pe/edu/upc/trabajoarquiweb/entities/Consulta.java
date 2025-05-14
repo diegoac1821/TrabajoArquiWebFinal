@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "Consulta")
@@ -17,14 +18,14 @@ public class Consulta {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
     @Column(name = "hora", nullable = false)
-    private Time hora;
+    private LocalTime hora;
 
     @ManyToOne
     @JoinColumn(name = "idUser")
     private Usuario usuario;
     public Consulta() {}
 
-    public Consulta(int id, String consulta, LocalDate fecha, Time hora, Usuario usuario) {
+    public Consulta(int id, String consulta, LocalDate fecha, LocalTime hora, Usuario usuario) {
         this.id = id;
         this.consulta = consulta;
         this.fecha = fecha;
@@ -56,11 +57,11 @@ public class Consulta {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

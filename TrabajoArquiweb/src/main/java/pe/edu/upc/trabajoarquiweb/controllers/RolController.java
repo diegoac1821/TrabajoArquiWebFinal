@@ -22,32 +22,32 @@ public class RolController {
     @Autowired//Injeccion de dependencias
     private IRolService rS;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping
-    public List<RolDTO> listarRoles() {
-        List<Rol> lista = rS.list(); // o findAll()
-        return lista.stream()
-                .map(r -> new RolDTO(r.getId(), r.getRol()))
-                .collect(Collectors.toList());
-    }
-
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping
-    public void insertar(@RequestBody RolDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Rol a = m.map(dto, Rol.class);
-        rS.insert(a);
-    }
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping
-    public void modificar(@RequestBody DenunciaDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Rol r = m.map(dto, Rol.class);
-        rS.update(r);
-    }
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") int id) {
-        rS.delete(id);
-    }
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    @GetMapping
+//    public List<RolDTO> listarRoles() {
+//        List<Rol> lista = rS.list(); // o findAll()
+//        return lista.stream()
+//                .map(r -> new RolDTO(r.getId(), r.getRol()))
+//                .collect(Collectors.toList());
+//    }
+//
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PostMapping
+//    public void insertar(@RequestBody RolDTO dto) {
+//        ModelMapper m = new ModelMapper();
+//        Rol a = m.map(dto, Rol.class);
+//        rS.insert(a);
+//    }
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PutMapping
+//    public void modificar(@RequestBody DenunciaDTO dto) {
+//        ModelMapper m = new ModelMapper();
+//        Rol r = m.map(dto, Rol.class);
+//        rS.update(r);
+//    }
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    @DeleteMapping("/{id}")
+//    public void eliminar(@PathVariable("id") int id) {
+//        rS.delete(id);
+//    }
 }

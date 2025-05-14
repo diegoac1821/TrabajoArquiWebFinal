@@ -5,13 +5,14 @@ import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ConsultaDTO {
 
     private int id;
     private String consulta;
     private LocalDate fecha;
-    private Time hora;
+    private LocalTime hora;
     private UsuarioDTO2 usuario;
 
     public int getId() {
@@ -38,11 +39,11 @@ public class ConsultaDTO {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
