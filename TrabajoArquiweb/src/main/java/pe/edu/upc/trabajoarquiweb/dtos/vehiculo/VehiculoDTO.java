@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.dtos.vehiculo;
 
+import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO2;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 public class VehiculoDTO {
@@ -11,7 +12,7 @@ public class VehiculoDTO {
 
     private String modelo;
 
-    private Usuario usuario;
+    private UsuarioDTO2 usuario;
 
     public String getPlaca() {
         return placa;
@@ -45,11 +46,11 @@ public class VehiculoDTO {
         this.modelo = modelo;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioDTO2 getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioDTO2 usuario) {
         this.usuario = usuario;
     }
 }
