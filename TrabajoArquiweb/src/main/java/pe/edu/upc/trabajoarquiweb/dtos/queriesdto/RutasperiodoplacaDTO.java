@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class RutasperiodoplacaDTO {
     private int id;
@@ -9,7 +10,7 @@ public class RutasperiodoplacaDTO {
     private String destinoLatitud;
     private String destinoLongitud;
     private LocalDate fecha;
-    private int duracion;
+    private LocalTime duracion;
     private int distancia;
     private String placa;
 
@@ -61,11 +62,11 @@ public class RutasperiodoplacaDTO {
         this.fecha = fecha;
     }
 
-    public int getDuracion() {
+    public LocalTime getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(LocalTime duracion) {
         this.duracion = duracion;
     }
 

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity
 @Table(name = "Ruta")
 public class Ruta {
@@ -22,7 +24,7 @@ public class Ruta {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
     @Column(name = "duracion", nullable = false)
-    private Time duracion;
+    private LocalTime duracion;
     @Column(name = "distancia", nullable = false)
     private int distancia;
 
@@ -32,7 +34,7 @@ public class Ruta {
 
     public Ruta() {}
 
-    public Ruta(int id, String origenLatitud, String origenLongitud, String destinoLatitud, String destinoLongitud, LocalDate fecha, Time duracion, int distancia, Vehiculo vehiculo) {
+    public Ruta(int id, String origenLatitud, String origenLongitud, String destinoLatitud, String destinoLongitud, LocalDate fecha, LocalTime duracion, int distancia, Vehiculo vehiculo) {
         this.id = id;
         this.origenLatitud = origenLatitud;
         this.origenLongitud = origenLongitud;
@@ -92,11 +94,11 @@ public class Ruta {
         this.fecha = fecha;
     }
 
-    public Time getDuracion() {
+    public LocalTime getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Time duracion) {
+    public void setDuracion(LocalTime duracion) {
         this.duracion = duracion;
     }
 

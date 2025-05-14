@@ -2,12 +2,13 @@ package pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class UbicacionDTO {
     private String latitud;
     private String longitud;
     private LocalDate fecha;
-    private Time hora;
+    private LocalTime hora;
     private MisGPSXUbicacionesDTO gps;
 
     public String getLatitud() {
@@ -34,11 +35,11 @@ public class UbicacionDTO {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

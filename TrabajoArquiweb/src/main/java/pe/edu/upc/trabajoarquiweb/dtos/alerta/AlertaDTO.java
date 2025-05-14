@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.dtos.alerta;
 
+import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.VehiculoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ public class AlertaDTO {
     private String asunto;
     private LocalDate fecha;
     private String descripcion;
-    private Vehiculo vehiculo;
+    private VehiculoDTO vehiculo;
 
     public int getId() {
         return id;
@@ -43,11 +44,11 @@ public class AlertaDTO {
         this.descripcion = descripcion;
     }
 
-    public Vehiculo getVehiculo() {
+    public VehiculoDTO getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(VehiculoDTO vehiculo) {
         this.vehiculo = vehiculo;
     }
 }
