@@ -27,10 +27,17 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
 
 
-    @Query(value = "SELECT u.id, u.nombres, u.apellidos, COUNT(v.placa) AS cantidad_vehiculos\n" +
-            " FROM Usuario u\n" +
-            " LEFT JOIN Vehiculo v ON u.id = v.usuario.id  \n" +
-            " GROUP BY u.id, u.nombres")
+    @Query(value = "SELECT \n" +
+            "  u.id, \n" +
+            "  u.nombres, \n" +
+            "  u.apellidos, \n" +
+            "  COUNT(v.placa) AS cantidad_vehiculos\n" +
+            "FROM \n" +
+            "  usuario u\n" +
+            "LEFT JOIN \n" +
+            "  vehiculo v ON u.id = v.id_user\n" +
+            "GROUP BY \n" +
+            "  u.id, u.nombres, u.apellidos;",nativeQuery = true)
     List<String[]> cantidadVehiculosPorUsuario();
 
     @Query("SELECT u FROM Usuario u WHERE u.edad BETWEEN :min AND :max")
