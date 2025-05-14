@@ -10,7 +10,9 @@ import pe.edu.upc.trabajoarquiweb.dtos.ruta.RutaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Ruta;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRutaService;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,7 +72,7 @@ public class RutaController {
         for(String[] columna:filaLista){
             RutasperiodoplacaDTO dto=new RutasperiodoplacaDTO();
             dto.setDistancia(Integer.parseInt(columna[0]));
-            dto.setDuracion(Integer.parseInt(columna[1]));
+            dto.setDuracion(LocalTime.parse(columna[1]));
             dto.setFecha(LocalDate.parse(columna[2]));
             dto.setId(Integer.parseInt(columna[3]));
             dto.setDestinoLatitud(columna[4]);

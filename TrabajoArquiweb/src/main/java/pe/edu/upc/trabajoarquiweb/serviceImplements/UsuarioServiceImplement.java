@@ -69,10 +69,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
 
-    @Override
-    public List<Usuario> search(String nombre) {
-        return List.of();
-    }
 
     @Override
     public List<String[]> cantidadVehiculosPorUsuario() {

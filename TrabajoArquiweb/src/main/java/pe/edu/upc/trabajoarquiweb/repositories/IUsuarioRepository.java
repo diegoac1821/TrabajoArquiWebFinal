@@ -15,9 +15,7 @@ import java.util.Optional;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Usuario findOneByUsername(String username);
 
-    //BUSCAR POR NOMBRE
-    @Query(" select count(u.username) from Usuario u where u.username =:username")
-    public int buscarUsername(@Param("username") String nombre);
+
 
 
     //INSERTAR ROLES
@@ -30,7 +28,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query(value = "SELECT \n" +
             "  u.id, \n" +
             "  u.nombres, \n" +
-            "  u.apellidos, \n" +
+
             "  COUNT(v.placa) AS cantidad_vehiculos\n" +
             "FROM \n" +
             "  usuario u\n" +
@@ -40,7 +38,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "  u.id, u.nombres, u.apellidos;",nativeQuery = true)
     List<String[]> cantidadVehiculosPorUsuario();
 
-    @Query("SELECT u FROM Usuario u WHERE u.edad BETWEEN :min AND :max")
+        @Query("SELECT u FROM Usuario u WHERE u.edad BETWEEN :min AND :max")
     List<Usuario> filtrarPorEdad(@Param("min") int min, @Param("max") int max);
 
     Optional<Usuario> findByUsername(String username);

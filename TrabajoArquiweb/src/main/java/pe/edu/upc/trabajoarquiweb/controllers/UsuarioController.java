@@ -78,17 +78,6 @@ public class UsuarioController {
     }
 
 
-
-
-    @GetMapping("/busquedas")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> buscar(@RequestParam String n) {
-        return uS.search(n).stream().map(h->{
-            ModelMapper m = new ModelMapper();
-            return m.map(h,UsuarioDTO.class);
-        }).collect(Collectors.toList());
-    }
-
     @GetMapping("/cantidadvehiculosusuario")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<NVehiculosUsuarioDTO> listarCantidadVehiculosPorUsuario(){
@@ -105,10 +94,10 @@ public class UsuarioController {
     }
     @GetMapping("/filtrar-edad")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> filtrarPorEdad(@RequestParam("min") int min, @RequestParam("max") int max) {
+    public List<UsuarioDTO2> filtrarPorEdad(@RequestParam("min") int min,int max) {
         ModelMapper m = new ModelMapper();
         return uS.filtrarUsuariosPorEdad(min, max).stream()
-                .map(u -> m.map(u, UsuarioDTO.class))
+                .map(u -> m.map(u, UsuarioDTO2.class))
                 .collect(Collectors.toList());
     }
     @GetMapping("/miperfil")

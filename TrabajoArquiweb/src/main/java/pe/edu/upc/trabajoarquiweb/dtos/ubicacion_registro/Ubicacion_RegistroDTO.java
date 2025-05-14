@@ -1,9 +1,11 @@
 package pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro;
 
+import pe.edu.upc.trabajoarquiweb.dtos.dispostivo_gps.Dispositivo_GPSDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Dispositivo_GPS;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Ubicacion_RegistroDTO {
 
@@ -11,8 +13,8 @@ public class Ubicacion_RegistroDTO {
     private String latitud;
     private String longitud;
     private LocalDate fecha;
-    private Time hora;
-    private Dispositivo_GPS disGPS;
+    private LocalTime hora;
+    private Dispositivo_GPSDTO disGPS;
 
     public int getId() {
         return id;
@@ -46,19 +48,19 @@ public class Ubicacion_RegistroDTO {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
-    public Dispositivo_GPS getDisGPS() {
+    public Dispositivo_GPSDTO getDisGPS() {
         return disGPS;
     }
 
-    public void setDisGPS(Dispositivo_GPS disGPS) {
+    public void setDisGPS(Dispositivo_GPSDTO disGPS) {
         this.disGPS = disGPS;
     }
 }
