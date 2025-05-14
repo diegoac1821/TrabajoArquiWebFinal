@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoarquiweb.dtos.reclamo;
 
+import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO2;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ public class ReclamoDTO {
     private LocalDate fecha;
     private String descripcion;
     private Boolean resuelto;
-    private Usuario usuario;
+    private UsuarioDTO2 usuario;
 
     public Boolean getResuelto() {
         return resuelto;
@@ -53,11 +54,11 @@ public class ReclamoDTO {
         this.descripcion = descripcion;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioDTO2 getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioDTO2 usuario) {
         this.usuario = usuario;
     }
 }
