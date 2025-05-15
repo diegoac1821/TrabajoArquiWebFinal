@@ -8,7 +8,6 @@ public class ReclamoResueltosDTO {
     private String asunto;
     private LocalDate fecha;
     private String descripcion;
-    private Boolean resuelto;
     private int usuario;
 
     public int getId() {
@@ -43,13 +42,7 @@ public class ReclamoResueltosDTO {
         this.descripcion = descripcion;
     }
 
-    public Boolean getResuelto() {
-        return resuelto;
-    }
 
-    public void setResuelto(Boolean resuelto) {
-        this.resuelto = resuelto;
-    }
 
     public int getUsuario() {
         return usuario;

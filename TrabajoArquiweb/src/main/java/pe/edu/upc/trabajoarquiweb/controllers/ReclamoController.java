@@ -69,7 +69,6 @@ public class ReclamoController {
             dto.setFecha(LocalDate.parse(columna[0]));
             dto.setId(Integer.parseInt(columna[1]));
             dto.setUsuario(Integer.parseInt(columna[2]));
-            dto.setResuelto(Boolean.parseBoolean(columna[3]));
             dto.setAsunto(columna[4]);
             dto.setDescripcion(columna[5]);
             dtoLista.add(dto);
