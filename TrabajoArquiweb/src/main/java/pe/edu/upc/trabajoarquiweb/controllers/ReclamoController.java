@@ -94,4 +94,12 @@ public class ReclamoController {
         return ResponseEntity.ok(dtos);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{id}")
+    public ReclamoDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        ReclamoDTO dto = m.map(rS.searchId(id), ReclamoDTO.class);
+        return dto;
+    }
+
 }

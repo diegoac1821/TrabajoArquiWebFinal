@@ -15,5 +15,6 @@ public interface IAlertaService {
     public List<String[]> fechaAlertmore(LocalDate fecha1,LocalDate fecha2);
     public List<String[]> placaAlert(String placa);
     List<MisAlertasDTO> listarAlertasPorUsername(String username);
+    public Alerta searchId(int id);
 
 }

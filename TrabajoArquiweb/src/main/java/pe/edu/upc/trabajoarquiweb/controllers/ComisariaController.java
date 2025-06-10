@@ -89,5 +89,12 @@ public class ComisariaController {
     }
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{id}")
+    public ComisariaDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        ComisariaDTO dto = m.map(cS.searchId(id), ComisariaDTO.class);
+        return dto;
+    }
 
 }

@@ -94,4 +94,12 @@ public class ConsultaController {
         return ResponseEntity.ok(dtos);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{id}")
+    public ConsultaDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        ConsultaDTO dto = m.map(cS.searchId(id), ConsultaDTO.class);
+        return dto;
+    }
+
 }

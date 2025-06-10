@@ -11,4 +11,5 @@ public interface IReclamoService {
     public void update(Reclamo r);
     public List<String[]> reclamosinresolver();
     List<Reclamo> listarReclamosPorUsername(String username);
+    public Reclamo searchId(int id);
 }

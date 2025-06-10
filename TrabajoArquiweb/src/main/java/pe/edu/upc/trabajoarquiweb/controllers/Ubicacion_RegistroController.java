@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoarquiweb.dtos.respuesta.RespuestaDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro.MisGPSXUbicacionesDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro.UbicacionDTO;
 import pe.edu.upc.trabajoarquiweb.dtos.ubicacion_registro.Ubicacion_RegistroDTO;
@@ -83,6 +84,14 @@ public class Ubicacion_RegistroController {
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{id}")
+    public Ubicacion_RegistroDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        Ubicacion_RegistroDTO dto = m.map(ruS.searchId(id), Ubicacion_RegistroDTO.class);
+        return dto;
     }
 
 }

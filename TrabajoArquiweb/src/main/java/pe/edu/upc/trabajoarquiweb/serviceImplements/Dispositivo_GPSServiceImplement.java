@@ -38,4 +38,9 @@ public class Dispositivo_GPSServiceImplement implements IDispositivo_GPSService 
         return gR.findByVehiculoUsuarioUsername(username);
     }
 
+    @Override
+    public Dispositivo_GPS searchId(int id) {
+        return gR.findById(id).orElse(new Dispositivo_GPS());
+    }
+
 }

@@ -41,5 +41,10 @@ public class ComisariaServiceimplement implements IComisariaService {
         return cR.cantidaddenunciasporcomisaria();
     }
 
+    @Override
+    public Comisaria searchId(int id) {
+        return cR.findById(id).orElse(new Comisaria());
+    }
+
 
 }

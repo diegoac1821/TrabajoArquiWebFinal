@@ -9,9 +9,17 @@ import java.util.List;
 
 @Repository
 public interface IReclamoRepository extends JpaRepository<Reclamo, Integer> {
-    @Query(value="SELECT *\n" +
-            "FROM reclamo r \n" +
-            "WHERE r.resuelto = false \n" ,nativeQuery = true)
+    @Query(value="SELECT \n" +
+            "    r.fecha, \n" +
+            "    r.id, \n" +
+            "    r.id_user, \n" +
+            "    r.resuelto, \n" +
+            "    r.asunto, \n" +
+            "    r.descripcion \n" +
+            "FROM \n" +
+            "    reclamo r \n" +
+            "WHERE \n" +
+            "    r.resuelto = true;" ,nativeQuery = true)
     public List<String[]> reclamosinresolver();
 
     List<Reclamo> findByUsuarioUsername(String username);

@@ -11,5 +11,6 @@ public interface IConsultaService {
     public void update(Consulta c);
     public List<String[]> cantidadConsultasPorUsuario();
     List<Consulta> listarConsultasPorUsername(String username);
+    public Consulta searchId(int id);
 
 }

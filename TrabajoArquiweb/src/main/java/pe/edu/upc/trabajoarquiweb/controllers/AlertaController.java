@@ -113,4 +113,13 @@ public class AlertaController {
         List<MisAlertasDTO> alertas = aS.listarAlertasPorUsername(username);
         return ResponseEntity.ok(alertas);
     }
+
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{id}")
+    public AlertaDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        AlertaDTO dto = m.map(aS.searchId(id), AlertaDTO.class);
+        return dto;
+    }
 }

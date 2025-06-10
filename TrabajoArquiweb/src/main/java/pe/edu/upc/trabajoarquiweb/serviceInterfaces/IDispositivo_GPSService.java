@@ -10,5 +10,6 @@ public interface IDispositivo_GPSService {
     public void update(Dispositivo_GPS gps);
     public void delete(int id);
     List<Dispositivo_GPS> listarGPSPorUsername(String username);
+    public Dispositivo_GPS searchId(int id);
 
 }

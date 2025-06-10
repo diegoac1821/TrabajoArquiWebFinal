@@ -80,4 +80,12 @@ public class Dispositivo_GPSController {
         }).collect(Collectors.toList());
         return ResponseEntity.ok(dtoList);
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{id}")
+    public Dispositivo_GPSDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        Dispositivo_GPSDTO dto = m.map(dS.searchId(id), Dispositivo_GPSDTO.class);
+        return dto;
+    }
 }

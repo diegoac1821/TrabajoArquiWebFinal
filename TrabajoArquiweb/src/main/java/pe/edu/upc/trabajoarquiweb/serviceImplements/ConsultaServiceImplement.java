@@ -43,4 +43,9 @@ public class ConsultaServiceImplement implements IConsultaService {
     public List<Consulta> listarConsultasPorUsername(String username) {
         return cR.findByUsuarioUsername(username);
     }
+
+    @Override
+    public Consulta searchId(int id) {
+        return cR.findById(id).orElse(new Consulta());
+    }
 }

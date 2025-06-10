@@ -68,4 +68,9 @@ public class AlertaServiceImplement implements IAlertaService {
         }).collect(Collectors.toList());
     }
 
+    @Override
+    public Alerta searchId(int id) {
+        return aS.findById(id).orElse(new Alerta());
+    }
+
 }
