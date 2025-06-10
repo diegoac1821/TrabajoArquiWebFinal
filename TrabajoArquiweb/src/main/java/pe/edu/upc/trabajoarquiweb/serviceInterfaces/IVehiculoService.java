@@ -8,5 +8,7 @@ public interface IVehiculoService {
     public List<Vehiculo> list();
     public void insert(Vehiculo vehiculo);
     public void update(Vehiculo vehiculo);
-    public void delete(String id);
+    public void delete(String placa);
+    public List<Vehiculo> buscarporplaca(String placa);
+    List<Vehiculo> listarVehiculosPorUsername(String username);
 }

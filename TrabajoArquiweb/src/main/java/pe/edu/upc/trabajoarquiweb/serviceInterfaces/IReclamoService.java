@@ -9,4 +9,7 @@ public interface IReclamoService {
     public void insert(Reclamo r);
     public void delete(int id);
     public void update(Reclamo r);
+    public List<String[]> reclamosinresolver();
+    List<Reclamo> listarReclamosPorUsername(String username);
+    public Reclamo searchId(int id);
 }

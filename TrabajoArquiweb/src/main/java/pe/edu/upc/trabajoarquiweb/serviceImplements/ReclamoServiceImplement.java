@@ -33,4 +33,19 @@ public class ReclamoServiceImplement implements IReclamoService {
     public void update(Reclamo r) {
         rR.save(r);
     }
+
+    @Override
+    public List<String[]> reclamosinresolver() {
+        return rR.reclamosinresolver();
+    }
+
+    @Override
+    public List<Reclamo> listarReclamosPorUsername(String username) {
+        return rR.findByUsuarioUsername(username);
+    }
+
+    @Override
+    public Reclamo searchId(int id) {
+        return rR.findById(id).orElse(new Reclamo());
+    }
 }

@@ -11,6 +11,9 @@ public interface IUsuarioService {
     public Usuario searchId(int id);
     public void update(Usuario usuario);
     public void delete(int id);
-    public List<Usuario> search(String nombre);
+    public List<String[]> cantidadVehiculosPorUsuario();
 
+    List<Usuario> filtrarUsuariosPorEdad(int min, int max);
+
+    Usuario findByUsername(String username);
 }

@@ -6,6 +6,7 @@ import pe.edu.upc.trabajoarquiweb.entities.Ruta;
 import pe.edu.upc.trabajoarquiweb.repositories.IRutaRepository;
 import pe.edu.upc.trabajoarquiweb.serviceInterfaces.IRutaService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,5 +37,10 @@ public class RutaServiceImplement implements IRutaService {
     @Override
     public void delete(int id) {
         rR.deleteById(id);
+    }
+
+    @Override
+    public List<String[]> RutasenPeriodo(LocalDate fecha1, LocalDate fecha2, String placa) {
+        return rR.RutasenPeriodo(fecha1, fecha2, placa);
     }
 }

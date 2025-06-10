@@ -1,12 +1,13 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.respuesta;
 
+import pe.edu.upc.trabajoarquiweb.dtos.consulta.ConsultaDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Consulta;
 
 public class RespuestaDTO {
 
     private int id;
     private String texto;
-    private Consulta consulta;
+    private ConsultaDTO consulta;
 
     public int getId() {
         return id;
@@ -24,11 +25,11 @@ public class RespuestaDTO {
         this.texto = texto;
     }
 
-    public Consulta getConsulta() {
+    public ConsultaDTO getConsulta() {
         return consulta;
     }
 
-    public void setConsulta(Consulta consulta) {
+    public void setConsulta(ConsultaDTO consulta) {
         this.consulta = consulta;
     }
 }

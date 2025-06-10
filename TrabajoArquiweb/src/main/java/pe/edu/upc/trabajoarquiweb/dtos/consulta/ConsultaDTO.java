@@ -1,5 +1,6 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.consulta;
 
+import pe.edu.upc.trabajoarquiweb.dtos.usuario.UsuarioDTO2;
 import pe.edu.upc.trabajoarquiweb.entities.Usuario;
 
 import java.sql.Time;
@@ -11,7 +12,7 @@ public class ConsultaDTO {
     private String consulta;
     private LocalDate fecha;
     private Time hora;
-    private Usuario usuario;
+    private UsuarioDTO2 usuario;
 
     public int getId() {
         return id;
@@ -45,11 +46,11 @@ public class ConsultaDTO {
         this.hora = hora;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioDTO2 getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioDTO2 usuario) {
         this.usuario = usuario;
     }
 }

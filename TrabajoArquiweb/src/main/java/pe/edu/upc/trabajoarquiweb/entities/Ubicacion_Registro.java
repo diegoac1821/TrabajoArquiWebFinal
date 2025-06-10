@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "Ubicacion-Registro")
@@ -18,14 +19,14 @@ public class Ubicacion_Registro {
     @Column(name = "fecha",nullable = false)
     private LocalDate fecha;
     @Column(name = "hora", nullable = false)
-    private Time hora;
+    private LocalTime hora;
     @ManyToOne
     @JoinColumn(name = "idD")
     private Dispositivo_GPS disGPS;
 
     public Ubicacion_Registro() {}
 
-    public Ubicacion_Registro(int id, String latitud, String longitud, LocalDate fecha, Time hora, Dispositivo_GPS disGPS) {
+    public Ubicacion_Registro(int id, String latitud, String longitud, LocalDate fecha, LocalTime hora, Dispositivo_GPS disGPS) {
         this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -66,11 +67,11 @@ public class Ubicacion_Registro {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

@@ -1,24 +1,14 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.dispostivo_gps;
 
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
+import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.MisVehiculosDTO;
 
 import java.time.LocalDate;
 
-public class Dispositivo_GPSDTO {
-    private int id;
+public class MisGPSDTO {
     private String numeroSerie;
     private double precio;
     private LocalDate fechaAdquisicion;
-
-    private Vehiculo vehiculo;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private MisVehiculosDTO vehiculo;
 
     public String getNumeroSerie() {
         return numeroSerie;
@@ -44,11 +34,11 @@ public class Dispositivo_GPSDTO {
         this.fechaAdquisicion = fechaAdquisicion;
     }
 
-    public Vehiculo getVehiculo() {
+    public MisVehiculosDTO getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(MisVehiculosDTO vehiculo) {
         this.vehiculo = vehiculo;
     }
 }

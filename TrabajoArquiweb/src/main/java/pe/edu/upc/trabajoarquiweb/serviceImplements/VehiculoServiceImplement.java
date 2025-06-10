@@ -29,7 +29,18 @@ public class VehiculoServiceImplement implements IVehiculoService {
     }
 
     @Override
-    public void delete(String id) {
-        vR.deleteById(id);//aR es el enlace
+    public void delete(String placa) {
+        vR.deleteById(placa);//aR es el enlace
     }
+
+    @Override
+    public List<Vehiculo> buscarporplaca(String placa) {
+        return vR.buscarporplaca(placa);
+    }
+
+    @Override
+    public List<Vehiculo> listarVehiculosPorUsername(String username) {
+        return vR.findByUsuarioUsername(username);
+    }
+
 }

@@ -1,16 +1,13 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.queriesdto;
 
-import pe.edu.upc.trabajoarquiweb.entities.Comisaria;
-import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
-public class DenunciaDTO {
-
+public class DenunciaEstadoDTO {
     private int id;
     private String descripcion;
     private String motivo;
     private String estado;
-    private Comisaria comisaria;
-    private Vehiculo vehiculo;
+    private int comisaria;
+    private String vehiculo;
 
     public int getId() {
         return id;
@@ -44,19 +41,19 @@ public class DenunciaDTO {
         this.estado = estado;
     }
 
-    public Comisaria getComisaria() {
+    public int getComisaria() {
         return comisaria;
     }
 
-    public void setComisaria(Comisaria comisaria) {
+    public void setComisaria(int comisaria) {
         this.comisaria = comisaria;
     }
 
-    public Vehiculo getVehiculo() {
+    public String getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(String vehiculo) {
         this.vehiculo = vehiculo;
     }
 }

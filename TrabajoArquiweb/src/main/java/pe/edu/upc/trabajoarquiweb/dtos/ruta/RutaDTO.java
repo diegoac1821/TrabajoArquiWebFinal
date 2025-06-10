@@ -1,8 +1,11 @@
-package pe.edu.upc.trabajoarquiweb.dtos;
+package pe.edu.upc.trabajoarquiweb.dtos.ruta;
 
+import pe.edu.upc.trabajoarquiweb.dtos.vehiculo.VehiculoDTO;
 import pe.edu.upc.trabajoarquiweb.entities.Vehiculo;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class RutaDTO {
 
@@ -12,9 +15,9 @@ public class RutaDTO {
     private String destinoLatitud;
     private String destinoLongitud;
     private LocalDate fecha;
-    private int duracion;
+    private LocalTime duracion;
     private int distancia;
-    private Vehiculo vehiculo;
+    private VehiculoDTO vehiculo;
 
     public int getId() {
         return id;
@@ -64,11 +67,11 @@ public class RutaDTO {
         this.fecha = fecha;
     }
 
-    public int getDuracion() {
+    public LocalTime getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(LocalTime duracion) {
         this.duracion = duracion;
     }
 
@@ -80,11 +83,11 @@ public class RutaDTO {
         this.distancia = distancia;
     }
 
-    public Vehiculo getVehiculo() {
+    public VehiculoDTO getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(VehiculoDTO vehiculo) {
         this.vehiculo = vehiculo;
     }
 }

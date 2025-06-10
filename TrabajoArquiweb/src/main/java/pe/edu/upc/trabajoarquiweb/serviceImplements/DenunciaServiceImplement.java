@@ -32,4 +32,15 @@ public class DenunciaServiceImplement implements IDenunciaService {
     @Override
     public void delete(int id) {
         dR.deleteById(id);}
+
+    @Override
+    public List<Denuncia> buscarDenunciaPorId(int id) {
+        return dR.buscarPorId(id);
+    }
+
+    @Override
+    public List<String[]> buscarPorEstado(String estado) {
+        return dR.buscarPorEstado(estado);
+    }
+
 }
